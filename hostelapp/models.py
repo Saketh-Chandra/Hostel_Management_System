@@ -1,4 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.contrib.auth.models import Group
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 # Create your models here.
@@ -35,22 +38,25 @@ class room(models.Model):
     Room_No = models.IntegerField(null=True)
     Floor_Number = models.ForeignKey(floors, null=True, on_delete=models.SET_NULL)
     Block_Name = models.ForeignKey(blocks, null=True, on_delete=models.SET_NULL)
-    Capacity = models.IntegerField(null=True)
-    Cost = models.BigIntegerField(null=True)
-    Number_already_occupied = models.IntegerField(null=True)
+    Capacity = models.IntegerField(default=4)
+    # Cost = models.BigIntegerField(null=True)
+    Number_already_occupied = models.IntegerField(
+        default=0,
+        validators=[
+            MaxValueValidator(4),
+            MinValueValidator(0)
+        ]
+    )
     Warden_ID = models.ForeignKey(warden, null=True, on_delete=models.SET_NULL, blank=True)
+    tese_ID = models.ForeignKey(User, limit_choices_to={'groups__name': "warden"}, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return str(str(self.Room_No) + " " + str(self.Block_Name))
 
 
-class student(models.Model):
-    Reg_No = models.CharField(max_length=20, null=True)
-    Room_No = models.ForeignKey(room, null=True, on_delete=models.SET_NULL)
-    Name = models.CharField(max_length=20, null=True)
-    Phone_Number = models.BigIntegerField(null=True)
-    DOB = models.DateField(null=True)
-    Gender = models.ForeignKey(blocks, null=True, on_delete=models.SET_NULL)
+class student_room(models.Model):
+    user = models.ForeignKey(User, limit_choices_to={'groups__name': "student"}, on_delete=models.CASCADE, null=False)
+    user_room = models.ForeignKey(room, on_delete=models.CASCADE, null=False)
 
     def __str__(self):
-        return str(self.Reg_No)
+        return f'{self.user} {self.user_room}'
