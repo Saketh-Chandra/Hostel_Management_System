@@ -72,6 +72,36 @@
     </style>
 </head>
 <body>
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>Success!</strong> {{ message }}.
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% elif message.tags == 'error' %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <strong>Error!</strong> {{ message }}.
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{% for i in floor_list %}
+    {% if i == 3 %}
+
+        <a href="{% url 'rooms' i.id %}" class="btn btn-primary btn-lg btn-warning">{{i}} </a>
+    {% else %}
+        <a href="{% url 'rooms' i.id %}" class="btn btn-primary btn-lg btn-warning">{{i}} </a>
+
+
+
+    {% endif %}
+
+
+{% endfor %}
+
 <div class="header" style="background-color:lavender;">
     <div>
     <div class="col-md-8">

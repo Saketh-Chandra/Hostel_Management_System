@@ -5,11 +5,11 @@
     <title>rooms</title>
     <meta charset="UTF-8">
     <title>Amrita university hostel management system</title>
-     <title>Bootstrap Example</title>
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Bootstrap Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
         body,
         html {
@@ -18,69 +18,108 @@
             height: 100%;
             background: #7abecc !important;
         }
-        .header{
-        background-color: #26d0c9;
-        color: #fff;
-        height: 130px;
+
+        .header {
+            background-color: #26d0c9;
+            color: #fff;
+            height: 130px;
         }
-        .header-logo{
-         float: left;
-         font-size: 36px;
-         colour:#fff;
+
+        .header-logo {
+            float: left;
+            font-size: 36px;
+            colour: #fff;
         }
+
         .main {
-         padding: 50px 0px;
-         }
-         .selt{
-         padding-left:550px;
-         font-size: 36px;
-         color:#ff0000;
-         }
-         .header-logo{
-         float: left;
-         font-size: 36px;
-         padding:20px;
-         color:#ff4a4a;
-         }
+            padding: 50px 0px;
+        }
+
+        .selt {
+            padding-left: 550px;
+            font-size: 36px;
+            color: #ff0000;
+        }
+
+        .header-logo {
+            float: left;
+            font-size: 36px;
+            padding: 20px;
+            color: #ff4a4a;
+        }
+
         .footer {
-        background-color:#2f5167;
-        color: #fff;
-        height: 120px;
-        padding: 40px;
+            background-color: #2f5167;
+            color: #fff;
+            height: 120px;
+            padding: 40px;
         }
-        .rom1{
-        margin-top:50px;
-        padding-left:250px;
-        padding-bottom:100px;
+
+        .rom1 {
+            margin-top: 50px;
+            padding-left: 250px;
+            padding-bottom: 100px;
         }
-        .rom2{
-        margin-top:50px;
-        padding-left:210px;
-        padding-bottom:100px;
+
+        .rom2 {
+            margin-top: 50px;
+            padding-left: 210px;
+            padding-bottom: 100px;
         }
+
         li {
-        list-style: none;
-        font-size: 25px;
+            list-style: none;
+            font-size: 25px;
         }
-        .last{
-        float: left;
-        font-size: 32px;
+
+        .last {
+            float: left;
+            font-size: 32px;
         }
     </style>
 </head>
 <body>
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>Success!</strong> {{ message }}.
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% elif message.tags == 'error' %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <strong>Error!</strong> {{ message }}.
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+
+{% for i in roomlist %}
+    <div class="row"></div>
+    <div class="column">
+        <a href="{% url 'confirmation_booking' i.id %}" class="btn btn-primary btn-lg btn-danger">{{ i }}</a>
+
+    </div>
+
+{% endfor %}
+</div>
+
 <div class="header" style="background-color:lavender;">
     <div>
-    <div class="col-md-8">
-    <p class="header-logo">Welcome to Amrita university Hostel management system</p>
-    </div>
-    <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTBT6bowbW_G9KBgJswk5WDUXGpGG0OYvhjRA&usqp=CAU" align="right" >
+        <div class="col-md-8">
+            <p class="header-logo">Welcome to Amrita university Hostel management system</p>
         </div>
- </div>
- <div class="main">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTBT6bowbW_G9KBgJswk5WDUXGpGG0OYvhjRA&usqp=CAU"
+             align="right">
+    </div>
+</div>
+<div class="main">
     <div class="row">
         <div class="col-sm-8">
-            <p class="selt"><u>Select a Room</u></p> </div>
+            <p class="selt"><u>Select a Room</u></p></div>
         <br>
     </div>
     <div class="btn-group-vertical">
@@ -95,11 +134,11 @@
             <button type="button" class="btn btn-primary btn-lg">room 8</button>
             <button type="button" class="btn btn-primary btn-lg">room 9</button>
             <button type="button" class="btn btn-primary btn-lg">room 10</button>
-            </div>
+        </div>
     </div>
-      <div class="btn-group-vertical">
+    <div class="btn-group-vertical">
         <div class="rom2">
-             <button type="button" class="btn btn-primary btn-lg">room 11</button>
+            <button type="button" class="btn btn-primary btn-lg">room 11</button>
             <button type="button" class="btn btn-primary btn-lg">room 12</button>
             <button type="button" class="btn btn-primary btn-lg">room 13</button>
             <button type="button" class="btn btn-primary btn-lg">room 14</button>
@@ -109,9 +148,9 @@
             <button type="button" class="btn btn-primary btn-lg">room 18</button>
             <button type="button" class="btn btn-primary btn-lg">room 19</button>
             <button type="button" class="btn btn-primary btn-lg">room 20</button>
-            </div>
+        </div>
     </div>
-     <div class="btn-group-vertical">
+    <div class="btn-group-vertical">
         <div class="rom2">
             <button type="button" class="btn btn-primary btn-lg">room 21</button>
             <button type="button" class="btn btn-primary btn-lg">room 22</button>
@@ -123,11 +162,11 @@
             <button type="button" class="btn btn-primary btn-lg">room 28</button>
             <button type="button" class="btn btn-primary btn-lg">room 29</button>
             <button type="button" class="btn btn-primary btn-lg">room 30</button>
-            </div>
+        </div>
     </div>
 </div>
 <div class="footer">
-    <div class="last">Thank you for visiting! </div>
+    <div class="last">Thank you for visiting!</div>
 </div>
 </body>
 </html>

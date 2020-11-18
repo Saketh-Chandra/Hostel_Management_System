@@ -56,7 +56,7 @@ class room(models.Model):
 
 
 class student_room(models.Model):
-    user = models.ForeignKey(User, limit_choices_to={'groups__name': "student"}, on_delete=models.CASCADE, null=False)
+    user = models.ForeignKey(User, limit_choices_to={'groups__name': "student"}, on_delete=models.CASCADE, null=False,unique=True)
     user_room = models.ForeignKey(room, on_delete=models.CASCADE, null=False)
 
     def __str__(self):
