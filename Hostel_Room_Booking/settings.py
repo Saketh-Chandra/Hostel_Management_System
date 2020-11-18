@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+#import jinja2
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'hostelapp',
+    'cheif_warden',
 ]
 
 MIDDLEWARE = [
@@ -53,11 +54,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Hostel_Room_Booking.urls'
 
-TEMPLATES = [
+TEMPLATES =[
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

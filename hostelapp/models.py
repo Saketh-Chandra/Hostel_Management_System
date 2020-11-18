@@ -18,7 +18,7 @@ class blocks(models.Model):
 class floors(models.Model):
     Floor_Number = models.IntegerField(null=True)
     Number_of_Rooms = models.IntegerField(null=True)
-    Block_Name = models.ForeignKey(blocks, null=True, on_delete=models.SET_NULL)
+    Block_Name = models.ForeignKey(blocks, null=True, on_delete=models.SET_NULL,)
 
     def __str__(self):
         return str(str(self.Floor_Number) + " " + str(self.Block_Name))
@@ -56,7 +56,7 @@ class room(models.Model):
 
 
 class student_room(models.Model):
-    user = models.ForeignKey(User, limit_choices_to={'groups__name': "student"}, on_delete=models.CASCADE, null=False)
+    user = models.ForeignKey(User, limit_choices_to={'groups__name': "student"}, on_delete=models.CASCADE, null=False,unique=True)
     user_room = models.ForeignKey(room, on_delete=models.CASCADE, null=False)
 
     def __str__(self):
