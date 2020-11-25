@@ -21,6 +21,8 @@ class room_form(forms.ModelForm):
         fields = '__all__'
 
 class warden_form(forms.ModelForm):
+    def custom_warden_form(self):
+        print("-----------------------The id we got from forms------------------------",self.id)
     class Meta:
         model = warden
         fields = '__all__'

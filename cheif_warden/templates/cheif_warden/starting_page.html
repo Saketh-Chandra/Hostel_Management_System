@@ -1,0 +1,8 @@
+{% extends 'cheif_warden/main.html' %}
+
+{% block content %}
+    <br>
+{% for i in block_list %}
+    <a href="{% url 'rooms' i.id %}" class="btn btn-primary btn-lg btn-warning">{{i}} </a>
+{% endfor %}
+{% endblock %}
