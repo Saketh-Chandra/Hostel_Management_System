@@ -1,6 +1,10 @@
+from django.db.models import F
 from django.shortcuts import render,redirect
 from hostelapp.models import *
 from .forms import *
+from django.conf import settings
+
+User = settings.AUTH_USER_MODEL
 
 
 # Create your views here.
@@ -47,18 +51,25 @@ def create_warden(request):
     if request.method == 'POST':
         create_warden_form = warden_form(request.POST)
         if create_warden_form.is_valid():
-            create_warden_form.save()
+            form = create_warden_form.save()
+            form.custom_warden_form()
+            print("the form id is",form.id)
             floor_id = create_warden_form.data['Floor_Number']
             #print("The floor id is",floor_id)
             floor_temp = floors.objects.get(id=floor_id)
             room_list = floor_temp.room_set.all()
+            print("The room list is",room_list)
+            #room_list = floor_temp.room_set.all().order_by('Warden_id').update(Warden_id_id = F(int(form.id)))
             for i in room_list:
-                print("The warden id is",i.Warden_ID_id)
-                print("the warden id from the form",create_warden_form.data['Warden_ID'])
-                i.Warden_ID_id = create_warden_form.data['Warden_ID']
-                i.save()
-                print("The warden id after is", i.Warden_ID_id)
+                print("The warden id before is",i.Warden_id_id)
+                print("the warden id from the form",form.id)
+                i.Warden_id_id = int(form.id)
+                #warden_name= User.objects.get(id=int(create_warden_form.data['Warden_ID']))
+                #i.Warden_id = warden_name
+                print("The warden id after is", i.Warden_id_id)
                 print("The room is", i)
+                #print("The warden name is",warden_name)
+                i.save()
             return redirect('cheif_warden_home')
 
     context = {'form_table': create_warden_form}

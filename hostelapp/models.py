@@ -47,7 +47,7 @@ class room(models.Model):
             MinValueValidator(0)
         ]
     )
-    Warden_ID = models.ForeignKey(warden, null=True, on_delete=models.SET_NULL, blank=True)
+    Warden_id = models.ForeignKey(warden, null=True, on_delete=models.CASCADE, blank=True)
 
     # tese_ID = models.ForeignKey(User, limit_choices_to={'groups__name': "warden"}, null=True, on_delete=models.SET_NULL)
 
