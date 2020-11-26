@@ -1,0 +1,16 @@
+{% extends 'Wardenapp/main.html' %}
+
+{% block content %}
+<h1>Blocks allotted to Warden</h1>
+<table style="width:100%">
+    <tr>
+        <th>BlockName</th>
+    </tr>
+    {% for i in warden %}
+    <tr>
+        <td><a href="{% url 'warden_floor1' i.Floor_Number_id %}">{{i.Block_Name}}</a></td>
+    </tr>
+
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,10 +1,22 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from hostelapp.models import student_room
 
 
 def unauthenticated_user(view_func):
     def wrapper_func(request, *args, **kwargs):
         if request.user.is_authenticated:
+            return redirect('home')
+        else:
+            return view_func(request, *args, **kwargs)
+
+    return wrapper_func
+
+
+def is_student_booked(view_func):
+    def wrapper_func(request, *args, **kwargs):
+        student = student_room.objects.filter(user=request.user)
+        if len(student) > 0:
             return redirect('home')
         else:
             return view_func(request, *args, **kwargs)
@@ -28,7 +40,6 @@ def allowed_users(allowed_roles=[]):
         return wrapper_func
 
     return decorator
-
 
 # def student_wanden_cheif_only(view_func):
 #     def wrapper_function(request, *args, **kwargs):

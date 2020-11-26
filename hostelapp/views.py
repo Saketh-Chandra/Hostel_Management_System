@@ -7,12 +7,22 @@ from accounts.decorators import *
 
 # Create your views here.
 
+def home_view_student(request):
+    info = student_room.objects.filter(user=request.user)
+    context = {'data_info': info}
+    print(info, '-------')
+    for i in info:
+        print(i.user_room_id,i.id)
+    return render(request, 'hostelapp/home.html', context=context)
+
+
 @allowed_users(allowed_roles=['student'])
-def home(request):
+@is_student_booked
+def block_views(request):
     print(request.user.groups.all()[0])
     blocks_list = blocks.objects.all()
     context = {'blocks_list': blocks_list}
-    return render(request, 'hostelapp/home.html', context=context)
+    return render(request, 'hostelapp/block_page.html', context=context)
 
 
 # def sam(request):
@@ -20,6 +30,7 @@ def home(request):
 
 
 @allowed_users(allowed_roles=['student'])
+@is_student_booked
 def floor(request, pk):
     print(pk)
     block_tem = blocks.objects.get(id=pk)
@@ -31,6 +42,7 @@ def floor(request, pk):
 
 
 @allowed_users(allowed_roles=['student'])
+@is_student_booked
 def rooms(request, pk):
     floor_tem = floors.objects.get(id=pk)
     room_list = floor_tem.room_set.all()
@@ -40,6 +52,7 @@ def rooms(request, pk):
 
 
 @allowed_users(allowed_roles=['student'])
+@is_student_booked
 def booking_form_views(request, pk):
     room_booked = room.objects.get(id=pk)
     floor_id = room_booked.Floor_Number_id
