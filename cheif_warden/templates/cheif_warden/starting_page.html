@@ -2,7 +2,12 @@
 
 {% block content %}
     <br>
-{% for i in block_list %}
-    <a href="{% url 'rooms' i.id %}" class="btn btn-primary btn-lg btn-warning">{{i}} </a>
-{% endfor %}
+    {% for i in block_list %}
+        <a href="{% url 'rooms' i.id %}" class="btn btn-primary btn-lg btn-warning">{{ i }} </a>
+    {% endfor %}
+    <p>update room for student </p>
+
+
+
+
 {% endblock %}

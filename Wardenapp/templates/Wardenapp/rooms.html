@@ -1,0 +1,27 @@
+{% extends 'Wardenapp/main.html' %}
+
+{% block content %}
+    <h1>list rooms</h1>
+    <table style="width:100%">
+        <tr>
+            <th>list rooms</th>
+        </tr>
+        {% for i in room_list %}
+            <tr>
+                <td><a href="{% url 'student_rooms_info' i.id %}">{{ i.Room_No }}</a></td>
+            </tr>
+
+        {% endfor %}
+    </table>
+{% endblock %}
+
+
+
+{#{% extends 'Wardenapp/main.html' %}#}
+{#<h1>#}
+{#    hello#}
+{#</h1>#}
+{#{% for i in room_list %}#}
+{##}
+{#    <h1>{{ i.Room_No }}</h1>#}
+{#{% endfor %}#}

@@ -2,12 +2,9 @@
 {% load static %}
 {% block content %}
 
-    <h1>hello</h1>
-
-    {% for i in data_info %}
-        <p>user name: {{ i.user }}</p>
-        <p>booked room {{ i.user_room }}</p>
-        <p>Ref No: {{ i.id }}</p>
+    {% for i in blocks_list %}
+        <p></p>
+        <a href="{% url 'floor' i.id %}" class="btn btn-primary btn-lg btn-danger">{{ i.Block_Name }}</a>
     {% endfor %}
 
 

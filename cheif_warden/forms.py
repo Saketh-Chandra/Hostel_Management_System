@@ -26,3 +26,7 @@ class warden_form(forms.ModelForm):
     class Meta:
         model = warden
         fields = '__all__'
+class Booking_form(forms.ModelForm):
+    class Meta:
+        model = student_room
+        fields = '__all__'

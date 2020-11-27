@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts',
     'hostelapp',
     'cheif_warden',
+    'Wardenapp',
 ]
 
 MIDDLEWARE = [
