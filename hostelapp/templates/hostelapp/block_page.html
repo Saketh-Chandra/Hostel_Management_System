@@ -1,4 +1,4 @@
-{% extends 'cheif_warden/main.html' %}
+{% extends 'hostelapp/main.html' %}
 {% load static %}
 {% block content %}
 
@@ -8,26 +8,9 @@
     {% endfor %}
 
 
-    <div>
-        {% if messages %}
-            {% for message in messages %}
-                {% if message.tags == 'success' %}
-                    <div class="alert alert-success alert-dismissible fade show">
-                        <strong color="red">Success!</strong> {{ message }}.
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    </div>
-                {% elif message.tags == 'error' %}
-                    <div class="alert alert-danger alert-dismissible fade show">
-                        <strong color="red">Error!</strong> {{ message }}.
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-
-    </div>
 
 {% endblock %}
+
 {#<!DOCTYPE html>#}
 {#<html lang="en">#}
 {#<head>#}

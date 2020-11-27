@@ -104,3 +104,4 @@ def booking_form_views(request, pk):
 
 def warden(request):
     return render(request, 'hostelapp/warden.html')
+
