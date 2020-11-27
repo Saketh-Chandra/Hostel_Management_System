@@ -92,6 +92,6 @@ def default_home(request):
                 return redirect('cheif_warden_home')
             else:
                 message = "You are not authorized to view this page"
-                messages.danger(request, message)
+                messages.error(request, message)
                 return redirect('logout_page')
                 # return HttpResponse('You are not authorized to view this page')

@@ -6,6 +6,7 @@ from django.conf import settings
 from accounts.decorators import *
 from django.contrib import messages
 
+
 User = settings.AUTH_USER_MODEL
 
 
@@ -29,7 +30,7 @@ def create_block(request):
             return redirect('cheif_warden_home')
         else:
             message = "Created Block is Failed"
-            messages.danger(request, message)
+            messages.error(request, message)
             return redirect('cheif_warden_home')
 
     context = {'form_table': create_block_form}
@@ -48,7 +49,7 @@ def create_floor(request):
             return redirect('cheif_warden_home')
     else:
         message = "Created floor is Failed"
-        messages.danger(request, message)
+        messages.error(request, message)
         return redirect('cheif_warden_home')
 
     context = {'form_table': create_floor_form}
@@ -67,7 +68,7 @@ def create_room(request):
             return redirect('cheif_warden_home')
         else:
             message = "Created room is Failed"
-            messages.danger(request, message)
+            messages.error(request, message)
             return redirect('cheif_warden_home')
     context = {'form_table': create_room_form}
     return render(request, 'cheif_warden/create_room_page.html', context)
@@ -103,61 +104,66 @@ def create_warden(request):
             return redirect('cheif_warden_home')
         else:
             message = "Failed to assign  warden! "
-            messages.danger(request, message)
+            messages.error(request, message)
             return redirect('cheif_warden_home')
     context = {'form_table': create_warden_form}
     return render(request, 'cheif_warden/create_warden_page.html', context)
 
 
 def update_student_room(request, pk):
-    student_info_room = student_room.objects.get(id=pk)
-    print(student_info_room.user, student_info_room.user_room)
-    old_room_data = student_info_room.user_room_id
-    student_room_form = Booking_form(instance=student_info_room)
+    try:
+        student_info_room = student_room.objects.get(id=pk)
+        print(student_info_room.user, student_info_room.user_room)
+        old_room_data = student_info_room.user_room_id
+        student_room_form = Booking_form(instance=student_info_room)
 
-    if request.method == 'POST':
-        new_student_room_form = Booking_form(request.POST, instance=student_info_room)
-        if new_student_room_form.is_valid():
-            # student_info_room
+        if request.method == 'POST':
+            new_student_room_form = Booking_form(request.POST, instance=student_info_room)
+            if new_student_room_form.is_valid():
+                # student_info_room
 
-            old_room_id = old_room_data
-            old_room = room.objects.get(id=old_room_id)
-            print(f'old room {old_room}')
-            print(f'old room redo {old_room.Number_already_occupied}')
-            old_room.Number_already_occupied -= 1
-            print(f'old room updated {old_room.Number_already_occupied}')
+                old_room_id = old_room_data
+                old_room = room.objects.get(id=old_room_id)
+                print(f'old room {old_room}')
+                print(f'old room redo {old_room.Number_already_occupied}')
+                old_room.Number_already_occupied -= 1
+                print(f'old room updated {old_room.Number_already_occupied}')
 
-            new_room_data = new_student_room_form.data['user_room']
+                new_room_data = new_student_room_form.data['user_room']
 
-            new_room = room.objects.get(id=new_room_data)
-            capacity = new_room.Capacity
-            occupied = new_room.Number_already_occupied
-            print(f'new room {new_room}')
-            print(f'ner room redo {new_room.Number_already_occupied}')
-            if capacity > occupied:
-                new_room.Number_already_occupied += 1
-                print(f'new room redo {new_room.Number_already_occupied}')
-                new_room.save()
-                new_student_room_form.save()
-                old_room.save()
-                student_room_form = new_student_room_form
-                message = "Successfully Student room update"
-                messages.success(request, message)
-                return redirect('cheif_warden_home')
+                new_room = room.objects.get(id=new_room_data)
+                capacity = new_room.Capacity
+                occupied = new_room.Number_already_occupied
+                print(f'new room {new_room}')
+                print(f'ner room redo {new_room.Number_already_occupied}')
+                if capacity > occupied:
+                    new_room.Number_already_occupied += 1
+                    print(f'new room redo {new_room.Number_already_occupied}')
+                    new_room.save()
+                    new_student_room_form.save()
+                    old_room.save()
+                    student_room_form = new_student_room_form
+                    message = "Successfully Student room update"
+                    messages.success(request, message)
+                    return redirect('cheif_warden_home')
+                else:
+                    message = "Room is already occupied"
+                    messages.error(request, message)
             else:
-                message = "Room is already occupied"
-                messages.danger(request, message)
-        else:
 
-            message = "Failed to update Student room"
-            messages.danger(request, message)
-            # print(f'new room {new_room_data} old room {old_room}')
+                message = "Failed to update Student room"
+                messages.error(request, message)
+                # print(f'new room {new_room_data} old room {old_room}')
 
-            # student_info_room.room.save()
-            # student_save_form = student_room_form.save()
-    context = {'student_room_form': student_room_form}
-    # print(student_room_form, '---')
-    return render(request, 'cheif_warden/student_room_update_page.html', context)
+                # student_info_room.room.save()
+                # student_save_form = student_room_form.save()
+        context = {'student_room_form': student_room_form}
+        # print(student_room_form, '---')
+        return render(request, 'cheif_warden/student_room_update_page.html', context)
+    except Exception:
+        message = "Student don't created room!!"
+        messages.error(request, message)
+        return redirect('cheif_warden_home')
 
 
 def chief_floors(request, pk):

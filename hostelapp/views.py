@@ -94,14 +94,4 @@ def booking_form_views(request, pk):
     return render(request, 'hostelapp/Booking_form_page.html', context)
 
 
-# def warden_view(request):
-#     pass
-#
-#
-# def student(request):
-#     return render(request, 'hostelapp/student.html')
-
-
-def warden(request):
-    return render(request, 'hostelapp/warden.html')
 
