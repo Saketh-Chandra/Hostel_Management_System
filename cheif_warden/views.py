@@ -125,3 +125,22 @@ def update_student_room(request, pk):
     context = {'student_room_form': student_room_form}
     # print(student_room_form, '---')
     return render(request, 'cheif_warden/student_room_update_page.html', context)
+
+
+def chief_floors(request,pk):
+    chief_block = blocks.objects.get(id=pk)
+    chief_floors_list = chief_block.floors_set.all()
+    context = {'chief_floors_list':chief_floors_list}
+    return render(request,'cheif_warden/floors.html',context)
+
+def chief_rooms(request,pk):
+    floor_temp = floors.objects.get(id=pk)
+    chief_rooms_list = floor_temp.room_set.all()
+    context={'chief_rooms_list':chief_rooms_list}
+    return render(request,'cheif_warden/rooms.html',context)
+
+def student_view(request, pk):
+    student_list = student_room.objects.filter(user_room_id=pk)
+    context = {'student_list': student_list}
+    print(student_list)
+    return render(request, 'cheif_warden/student_info_page.html', context)
