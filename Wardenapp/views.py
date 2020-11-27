@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from hostelapp.models import *
-
+from .filters import *
 from django.http import HttpResponse
 
 
@@ -39,12 +39,17 @@ def rooms_view(request, pk):
     floor_tem = floors.objects.get(id=pk)
     room_list = floor_tem.room_set.all()
     print(room_list)
-    context = {'room_list': room_list}
+    myFilter=roomFilter(request.GET,queryset=room_list)
+    room_list=myFilter.qs
+    context = {'room_list': room_list,'myFilter':myFilter}
     return render(request, 'Wardenapp/rooms.html', context)
 
 
 def student_view(request, pk):
+
     student_list = student_room.objects.filter(user_room_id=pk)
-    context = {'student_list': student_list}
+    myFilter=student_roomFilter(request.GET,queryset=student_list)
+    student_list=myFilter.qs
+    context = {'student_list': student_list,'myFilter':myFilter}
     print(student_list)
     return render(request, 'Wardenapp/student_rooms.html', context)

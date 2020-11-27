@@ -1,27 +1,31 @@
+
+
+
 {% extends 'Wardenapp/main.html' %}
 
 {% block content %}
-    <h1>list rooms</h1>
-    <table style="width:100%">
-        <tr>
-            <th>list rooms</th>
-        </tr>
-        {% for i in room_list %}
-            <tr>
-                <td><a href="{% url 'student_rooms_info' i.id %}">{{ i.Room_No }}</a></td>
-            </tr>
+<div>
+<form method="get">
+    {{myFilter.form}}
+    <button class="btn btn-primary" type="submit">
+    <p align="middle">Search</p>
+    </button>
+</form>
+</div>
+{% for i in room_list %}
 
-        {% endfor %}
-    </table>
+
+<div class="card" style="width: 18rem;">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUQ30X9zHfGTkhk45n6heuUTyssEW99ElxRQ&usqp=CAU" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{i.Room_No}}</h5>
+    <a href="{% url 'student_rooms_info' i.id %}" class="btn btn-primary">Click Here</a>
+  </div>
+</div>
+
+{% endfor %}
+
+
 {% endblock %}
 
 
-
-{#{% extends 'Wardenapp/main.html' %}#}
-{#<h1>#}
-{#    hello#}
-{#</h1>#}
-{#{% for i in room_list %}#}
-{##}
-{#    <h1>{{ i.Room_No }}</h1>#}
-{#{% endfor %}#}
