@@ -75,17 +75,23 @@ def logout_view(request):
 def default_home(request):
     print('default_home')
     group = None
-    if request.user.groups.exists():
-        group = request.user.groups.all()[0].name
-        print(group)
+    if request.user.is_anonymous:
+        return redirect('login_page')
+    else:
+        if request.user.groups.exists():
+            group = request.user.groups.all()[0].name
+            print(group)
 
-        if group == 'student':
-            return redirect('home')
+            if group == 'student':
+                return redirect('home')
 
-        elif group == 'warden':
-            return redirect('warden_blocks')
-            # return view_func(request, *args, **kwargs)
-        elif group == 'chief warden':
-            return redirect('cheif_warden_home')
-        else:
-            return HttpResponse('You are not authorized to view this page')
+            elif group == 'warden':
+                return redirect('warden_blocks')
+                # return view_func(request, *args, **kwargs)
+            elif group == 'chief warden':
+                return redirect('cheif_warden_home')
+            else:
+                message = "You are not authorized to view this page"
+                messages.danger(request, message)
+                return redirect('logout_page')
+                # return HttpResponse('You are not authorized to view this page')

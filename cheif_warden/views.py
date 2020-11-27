@@ -4,6 +4,7 @@ from hostelapp.models import *
 from .forms import *
 from django.conf import settings
 from accounts.decorators import *
+from django.contrib import messages
 
 User = settings.AUTH_USER_MODEL
 
@@ -23,6 +24,12 @@ def create_block(request):
         create_block_form = Block_form(request.POST)
         if create_block_form.is_valid():
             create_block_form.save()
+            message = "Created Block is successfully done"
+            messages.success(request, message)
+            return redirect('cheif_warden_home')
+        else:
+            message = "Created Block is Failed"
+            messages.danger(request, message)
             return redirect('cheif_warden_home')
 
     context = {'form_table': create_block_form}
@@ -36,7 +43,13 @@ def create_floor(request):
         create_floor_form = floor_form(request.POST)
         if create_floor_form.is_valid():
             create_floor_form.save()
+            message = "Created floor is successfully done"
+            messages.success(request, message)
             return redirect('cheif_warden_home')
+    else:
+        message = "Created floor is Failed"
+        messages.danger(request, message)
+        return redirect('cheif_warden_home')
 
     context = {'form_table': create_floor_form}
     return render(request, 'cheif_warden/create_floor_page.html', context)
@@ -49,8 +62,13 @@ def create_room(request):
         create_room_form = room_form(request.POST)
         if create_room_form.is_valid():
             create_room_form.save()
+            message = "Created room is successfully done"
+            messages.success(request, message)
             return redirect('cheif_warden_home')
-
+        else:
+            message = "Created room is Failed"
+            messages.danger(request, message)
+            return redirect('cheif_warden_home')
     context = {'form_table': create_room_form}
     return render(request, 'cheif_warden/create_room_page.html', context)
 
@@ -80,8 +98,13 @@ def create_warden(request):
                 print("The room is", i)
                 # print("The warden name is",warden_name)
                 i.save()
+            message = "Successfully warden is assigned"
+            messages.success(request, message)
             return redirect('cheif_warden_home')
-
+        else:
+            message = "Failed to assign  warden! "
+            messages.danger(request, message)
+            return redirect('cheif_warden_home')
     context = {'form_table': create_warden_form}
     return render(request, 'cheif_warden/create_warden_page.html', context)
 
@@ -118,6 +141,16 @@ def update_student_room(request, pk):
                 new_student_room_form.save()
                 old_room.save()
                 student_room_form = new_student_room_form
+                message = "Successfully Student room update"
+                messages.success(request, message)
+                return redirect('cheif_warden_home')
+            else:
+                message = "Room is already occupied"
+                messages.danger(request, message)
+        else:
+
+            message = "Failed to update Student room"
+            messages.danger(request, message)
             # print(f'new room {new_room_data} old room {old_room}')
 
             # student_info_room.room.save()
@@ -127,17 +160,19 @@ def update_student_room(request, pk):
     return render(request, 'cheif_warden/student_room_update_page.html', context)
 
 
-def chief_floors(request,pk):
+def chief_floors(request, pk):
     chief_block = blocks.objects.get(id=pk)
     chief_floors_list = chief_block.floors_set.all()
-    context = {'chief_floors_list':chief_floors_list}
-    return render(request,'cheif_warden/floors.html',context)
+    context = {'chief_floors_list': chief_floors_list}
+    return render(request, 'cheif_warden/floors.html', context)
 
-def chief_rooms(request,pk):
+
+def chief_rooms(request, pk):
     floor_temp = floors.objects.get(id=pk)
     chief_rooms_list = floor_temp.room_set.all()
-    context={'chief_rooms_list':chief_rooms_list}
-    return render(request,'cheif_warden/rooms.html',context)
+    context = {'chief_rooms_list': chief_rooms_list}
+    return render(request, 'cheif_warden/rooms.html', context)
+
 
 def student_view(request, pk):
     student_list = student_room.objects.filter(user_room_id=pk)

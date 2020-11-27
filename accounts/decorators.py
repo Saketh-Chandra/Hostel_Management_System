@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from hostelapp.models import student_room
-
+from django.contrib import messages
 
 def unauthenticated_user(view_func):
     def wrapper_func(request, *args, **kwargs):
@@ -35,7 +35,10 @@ def allowed_users(allowed_roles=[]):
             if group in allowed_roles:
                 return view_func(request, *args, **kwargs)
             else:
-                return HttpResponse('You are not authorized to view this page')
+                message = "You are not authorized to view this page"
+                messages.success(request, message)
+                return redirect('default_home_name')
+                # return HttpResponse('')
 
         return wrapper_func
 

@@ -46,7 +46,6 @@ def rooms_view(request, pk):
 
 
 def student_view(request, pk):
-
     student_list = student_room.objects.filter(user_room_id=pk)
     myFilter=student_roomFilter(request.GET,queryset=student_list)
     student_list=myFilter.qs

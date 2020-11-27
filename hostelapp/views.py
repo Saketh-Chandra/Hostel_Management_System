@@ -6,11 +6,11 @@ from accounts.decorators import *
 
 
 # Create your views here.
-
+@allowed_users(allowed_roles=['student'])
 def home_view_student(request):
     info = student_room.objects.filter(user=request.user)
     context = {'data_info': info}
-    print(info, '-------')
+    # print(info, '-------')
     for i in info:
         print(i.user_room_id,i.id)
     return render(request, 'hostelapp/home.html', context=context)
@@ -86,7 +86,7 @@ def booking_form_views(request, pk):
                 # url = 'rooms/floor_id/'
                 return redirect('rooms', pk=floor_id)
     except:
-        message = "You already Booked the Room" + " One can Book Only one Room"
+        message = "You already Booked the Room One can Book Only one Room"
         messages.error(request, message)
         return redirect('home')
 
