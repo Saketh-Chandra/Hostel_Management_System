@@ -8,11 +8,15 @@
             Search
         </button>
     </form>
+    <br>
+    <hr>
     <form method="POST" action="">
         {% csrf_token %}
         <p>Do you want to {{ form_hide }} </p>
         <input class="btn btn-primary btn-sm btn-success" type="submit" name="update">
     </form>
+    <br>
+    <hr>
     <table style="width:100%">
         <tr>
             <th>Student Name</th>

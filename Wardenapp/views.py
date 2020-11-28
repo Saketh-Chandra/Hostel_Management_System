@@ -41,22 +41,34 @@ def floors_view(request, pk):
 
 @allowed_users(allowed_roles=['warden'])
 def rooms_view(request, pk):
-    print(pk)
-    warden_floor = warden.objects.get(Warden_ID=request.user)
-    pk_warden = warden_floor.Floor_Number_id
-    floor_tem = floors.objects.get(id=pk)
-    # print(pk_warden,type(pk_warden),type(pk))
-    if (int(pk_warden) == int(pk)):
+    try:
+        print(pk)
+        # warden_floor = warden.objects.filter(Warden_ID=request.user, Floor_Number_id=pk)
+        # print(warden_floor)
+        # pk_warden = warden_floor.Floor_Number_id
+        # print(pk, pk_warden)
+        floor_tem = floors.objects.get(id=pk)
         room_list = floor_tem.room_set.all()
         print(room_list)
         myFilter = roomFilter(request.GET, queryset=room_list)
         room_list = myFilter.qs
         context = {'room_list': room_list, 'myFilter': myFilter}
         return render(request, 'Wardenapp/rooms.html', context)
-    else:
+    except Exception:
         message = "Page dose not exist or You are not authorized to view this page"
         messages.error(request, message)
         return redirect('default_home_name')
+
+    # warden_floor = warden.objects.filter(Warden_ID=request.user).first()
+    # pk_warden = warden_floor.Floor_Number_id
+
+    # print(pk_warden,type(pk_warden),type(pk))
+    # if (int(pk_warden) == int(pk)):
+    #
+    # else:
+    #     message = "Page dose not exist or You are not authorized to view this page"
+    #     messages.error(request, message)
+    #     return redirect('default_home_name')
 
 
 @allowed_users(allowed_roles=['warden'])
