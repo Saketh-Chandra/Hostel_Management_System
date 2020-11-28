@@ -1,15 +1,17 @@
 {% extends 'cheif_warden/main.html' %}
 
 {% block content %}
-    <h1>student</h1>
     <table style="width:100%">
         <tr>
-            <th>student names</th>
+            <th>Student Names</th>
+            <th>Student Email</th>
 
         </tr>
+
         {% for i in student_list %}
             <tr>
-                {{ i.user }}
+                <td>{{ i.user }}</td>
+                <td>{{ i.user.email }}</td>
             </tr>
 
         {% endfor %}
