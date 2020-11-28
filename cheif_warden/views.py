@@ -6,7 +6,6 @@ from django.conf import settings
 from accounts.decorators import *
 from django.contrib import messages
 
-
 User = settings.AUTH_USER_MODEL
 
 
@@ -14,6 +13,10 @@ User = settings.AUTH_USER_MODEL
 @allowed_users(allowed_roles=['chief warden'])
 def cheif_warden(request):
     block_list = blocks.objects.all()
+    if request.method == 'POST':
+        Ref_No = request.POST.get('Ref_No')
+        print(Ref_No)
+        return redirect('update_student_room_name', pk=Ref_No)
     context = {'block_list': block_list}
     return render(request, 'cheif_warden/starting_page.html', context)
 
@@ -47,10 +50,10 @@ def create_floor(request):
             message = "Created floor is successfully done"
             messages.success(request, message)
             return redirect('cheif_warden_home')
-    else:
-        message = "Created floor is Failed"
-        messages.error(request, message)
-        return redirect('cheif_warden_home')
+        else:
+            message = "Created floor is Failed"
+            messages.error(request, message)
+            return redirect('cheif_warden_home')
 
     context = {'form_table': create_floor_form}
     return render(request, 'cheif_warden/create_floor_page.html', context)
@@ -99,26 +102,27 @@ def create_warden(request):
                 print("The room is", i)
                 # print("The warden name is",warden_name)
                 i.save()
-            message = "Successfully warden is assigned"
+            message = "Successfully warden is created"
             messages.success(request, message)
             return redirect('cheif_warden_home')
         else:
-            message = "Failed to assign  warden! "
+            message = "Failed to created  warden! "
             messages.error(request, message)
             return redirect('cheif_warden_home')
     context = {'form_table': create_warden_form}
     return render(request, 'cheif_warden/create_warden_page.html', context)
 
 
+@allowed_users(allowed_roles=['chief warden'])
 def update_student_room(request, pk):
     try:
         student_info_room = student_room.objects.get(id=pk)
         print(student_info_room.user, student_info_room.user_room)
         old_room_data = student_info_room.user_room_id
-        student_room_form = Booking_form(instance=student_info_room)
+        student_room_form = update_booking_form(instance=student_info_room)
 
         if request.method == 'POST':
-            new_student_room_form = Booking_form(request.POST, instance=student_info_room)
+            new_student_room_form = update_booking_form(request.POST, instance=student_info_room)
             if new_student_room_form.is_valid():
                 # student_info_room
 
@@ -157,7 +161,7 @@ def update_student_room(request, pk):
 
                 # student_info_room.room.save()
                 # student_save_form = student_room_form.save()
-        context = {'student_room_form': student_room_form}
+        context = {'student_room_form': student_room_form, 'student_info_room': student_info_room}
         # print(student_room_form, '---')
         return render(request, 'cheif_warden/student_room_update_page.html', context)
     except Exception:
@@ -166,6 +170,7 @@ def update_student_room(request, pk):
         return redirect('cheif_warden_home')
 
 
+@allowed_users(allowed_roles=['chief warden'])
 def chief_floors(request, pk):
     chief_block = blocks.objects.get(id=pk)
     chief_floors_list = chief_block.floors_set.all()
@@ -173,6 +178,7 @@ def chief_floors(request, pk):
     return render(request, 'cheif_warden/floors.html', context)
 
 
+@allowed_users(allowed_roles=['chief warden'])
 def chief_rooms(request, pk):
     floor_temp = floors.objects.get(id=pk)
     chief_rooms_list = floor_temp.room_set.all()
@@ -180,8 +186,41 @@ def chief_rooms(request, pk):
     return render(request, 'cheif_warden/rooms.html', context)
 
 
+@allowed_users(allowed_roles=['chief warden'])
 def student_view(request, pk):
     student_list = student_room.objects.filter(user_room_id=pk)
     context = {'student_list': student_list}
     print(student_list)
     return render(request, 'cheif_warden/student_info_page.html', context)
+
+
+@allowed_users(allowed_roles=['chief warden'])
+def warden_list(request):
+    w_list = warden.objects.all()
+    context = {'w_list': w_list}
+    return render(request, 'cheif_warden/warden_list_page.html', context)
+
+
+@allowed_users(allowed_roles=['chief warden'])
+def update_warden(request, pk):
+    try:
+        warden_info = warden.objects.get(id=pk)
+        form_w = update_warden_form(instance=warden_info)
+        if request.method == 'POST':
+            form_w = update_warden_form(request.POST, instance=warden_info)
+            if form_w.is_valid():
+                form_w.save()
+                message = "Successfully warden room update"
+                messages.success(request, message)
+                return redirect('cheif_warden_home')
+            else:
+                message = "warden don't updated room!!"
+                messages.error(request, message)
+                redirect('cheif_warden_home')
+
+        context = {'form_w': form_w, 'warden_info': warden_info}
+        return render(request, 'cheif_warden/update_warden_page.html', context)
+    except Exception:
+        message = "Warden dose not existed !"
+        messages.error(request, message)
+        return redirect('cheif_warden_home')

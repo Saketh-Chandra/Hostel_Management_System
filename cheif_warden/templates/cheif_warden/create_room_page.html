@@ -4,8 +4,12 @@
     <br>
     <form method="POST">
         {% csrf_token %}
-        {{ form_table }}
-        <input type="submit" name="save">
+        <table>
+            {{ form_table.as_table }}
+        </table>
+        <br>
+        <a href="{% url 'default_home_name' %}" class="btn btn-danger" role="button">Cancel</a>
+        <input type="submit" class="btn btn-primary" name="update">
     </form>
 
 

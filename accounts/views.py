@@ -57,6 +57,7 @@ def register_views(request):
             else:
                 # print('error')
                 messages.error(request, 'its not a correct email!')
+                user.delete()
                 return redirect('register_page')
             user_name = form.cleaned_data.get('username')
             # print(user_name)

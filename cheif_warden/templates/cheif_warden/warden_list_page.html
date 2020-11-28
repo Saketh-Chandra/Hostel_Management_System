@@ -1,0 +1,34 @@
+{% extends 'cheif_warden/main.html' %}
+{% load static %}
+{% block content %}
+
+    <table>
+        <tr>
+            <th>
+                Warden name
+            </th>
+            <th>
+                Blook name
+            </th>
+            <th>
+                Floor Number
+            </th>
+            <th>
+                Update
+            </th>
+        </tr>
+        {% for i in w_list %}
+            <tr>
+                <td>{{ i.Warden_ID }}</td>
+                <td>{{ i.Block_Name }}</td>
+                <td>{{ i.Floor_Number }}</td>
+                <td>
+                    <a href="{% url 'update_warden_name' i.id %}" class="btn btn-success" role="button">Update</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+{% endblock %}

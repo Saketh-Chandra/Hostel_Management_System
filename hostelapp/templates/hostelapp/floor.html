@@ -7,19 +7,13 @@
 
 
     <br>
-{% for i in floor_list %}
-    {% if i == 3 %}
+    {% for i in floor_list %}
 
-        <P align="middle"> <a href="{% url 'rooms' i.id %}" class="btn btn-primary btn-lg btn-warning">{{ i }} </a> </P>
-    {% else %}
-        <P align="middle"> <a href="{% url 'rooms' i.id %}" class="btn btn-primary btn-lg btn-warning">{{ i }} </a> </P>
+        <P align="middle"><a href="{% url 'rooms' i.id %}" class="btn btn-primary btn-lg btn-warning">{{ i }} </a></P>
 
 
 
-    {% endif %}
-
-
-{% endfor %}
+    {% endfor %}
 
 
 {% endblock %}

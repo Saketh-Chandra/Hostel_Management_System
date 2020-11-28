@@ -2,12 +2,17 @@
 
 {% block content %}
 
-<form method="get">
-    {{myFilter.form}}
-    <button class="btn btn-primary" type="submit">
-    Search
-    </button>
-</form>
+    <form method="get">
+        {{ myFilter.form }}
+        <button class="btn btn-primary" type="submit">
+            Search
+        </button>
+    </form>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <p>Do you want to {{ form_hide }} </p>
+        <input class="btn btn-primary btn-sm btn-success" type="submit" name="update">
+    </form>
     <table style="width:100%">
         <tr>
             <th>Student Name</th>
@@ -17,8 +22,8 @@
         {% for i in student_list %}
             <tr>
                 <td>{{ i.user }}</td>
-                <td>{{i.user.email}}</td>
-                <td>{{i.user.phone_number}}</td>
+                <td>{{ i.user.email }}</td>
+                <td>{{ i.user.phone_number }}</td>
             </tr>
 
         {% endfor %}
