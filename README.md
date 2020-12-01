@@ -20,11 +20,7 @@ for automation is a necessity.
 The purpose of this project is to implement an online hostel room allotment system for
 students replacing the manual method of room allotment. 
 
-
-<!--A running instance of it can be found at " 
-[https://my--todo.herokuapp.com/](https://my--todo.herokuapp.com/) ".-->
-
-
+## :heavy_exclamation_mark: This is still in the development phase!
 
 # :book: How to use the repository?
 ## :gear: Setup
@@ -50,8 +46,8 @@ deactivate
 ```
 ### After setting up virtual environment do this!
 ``` bash
-git clone https://github.com/Saketh-Chandra/My_ToDO.git
-cd My_ToDO
+https://github.com/Saketh-Chandra/Hostel_Room_Booking.git
+cd Hostel_Room_Booking
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py createsuperuser
@@ -71,7 +67,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on contributing.
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
-See the full list of [contributors](https://github.com/Saketh-Chandra/flask_basic/graphs/contributors) who participated in this project and statistics.
+See the full list of [contributors](https://github.com/Saketh-Chandra/Hostel_Room_Booking/graphs/contributors) who participated in this project and statistics.
 
 # :heavy_exclamation_mark: Prerequisites aka requirements
 
@@ -79,11 +75,11 @@ Please read [Prerequisite](Prerequisite.md) file for details.
 
 # :scroll: Changelog
 
-Check the [changelog here](https://github.com/Saketh-Chandra/My_ToDO/commits/master).
+Check the [changelog here](https://github.com/Saketh-Chandra/Hostel_Room_Booking/commits/master).
 
 # :scroll: I found some bugs or issues. Where do I report?
 
-Report [here](https://github.com/Saketh-Chandra/My_ToDO/issues/new) in detail answering these questions:
+Report [here](https://github.com/Saketh-Chandra/Hostel_Room_Booking/issues/new) in detail answering these questions:
 
 * What steps did you take to make the bug appear?
 * How can the bug be fixed? (In case you know)
@@ -93,4 +89,4 @@ Report [here](https://github.com/Saketh-Chandra/My_ToDO/issues/new) in detail an
 
 # :scroll: How do I contact the team?
 
-Check [here](https://github.com/Saketh-Chandra/My_ToDO/graphs/contributors) for the list of contributors. Contact one of them through their profiles.
+Check [here](https://github.com/Saketh-Chandra/Hostel_Room_Booking/graphs/contributors) for the list of contributors. Contact one of them through their profiles.
