@@ -1,0 +1,14 @@
+{% extends 'cheif_warden/main.html' %}
+
+{% block content %}
+    <br>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{ form_table.as_table }}
+        </table>
+        <br>
+        <a href="{% url 'default_home_name' %}" class="btn btn-danger" role="button">Cancel</a>
+        <input type="submit" class="btn btn-primary" name="update">
+    </form>
+{% endblock %}

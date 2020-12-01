@@ -1,0 +1,19 @@
+{% extends 'hostelapp/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+
+    <br>
+    {% for i in floor_list %}
+
+        <P align="middle"><a href="{% url 'rooms' i.id %}" class="btn btn-primary btn-lg btn-warning">{{ i }} </a></P>
+
+
+
+    {% endfor %}
+
+
+{% endblock %}

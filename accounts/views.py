@@ -23,8 +23,8 @@ def login_views(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            # return redirect('user_page')
-            return HttpResponse(f'hello {request.user}')
+            return redirect('default_home_name')
+            # return HttpResponse(f'hello {request.user}')
         else:
             messages.info(request, "username or password is incorrect")
     context = {}
@@ -57,6 +57,7 @@ def register_views(request):
             else:
                 # print('error')
                 messages.error(request, 'its not a correct email!')
+                user.delete()
                 return redirect('register_page')
             user_name = form.cleaned_data.get('username')
             # print(user_name)
@@ -70,3 +71,28 @@ def logout_view(request):
     logout(request)
     messages.success(request, 'You are successfully logged out')
     return redirect('login_page')
+
+
+def default_home(request):
+    print('default_home')
+    group = None
+    if request.user.is_anonymous:
+        return redirect('login_page')
+    else:
+        if request.user.groups.exists():
+            group = request.user.groups.all()[0].name
+            print(group)
+
+            if group == 'student':
+                return redirect('home')
+
+            elif group == 'warden':
+                return redirect('warden_blocks')
+                # return view_func(request, *args, **kwargs)
+            elif group == 'chief warden':
+                return redirect('cheif_warden_home')
+            else:
+                message = "You are not authorized to view this page"
+                messages.error(request, message)
+                return redirect('logout_page')
+                # return HttpResponse('You are not authorized to view this page')

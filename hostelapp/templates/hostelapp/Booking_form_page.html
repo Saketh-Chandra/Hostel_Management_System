@@ -1,0 +1,22 @@
+{% extends 'hostelapp/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+    <h1>Hi this is your Room Confirmation Page.</h1>
+
+    <p> Your Booking Room Number is {{ room_number }} </p>
+    <p>Your Floor Number is {{ floor_number.Floor_Number }}</p>
+    <p>Your Block Number is {{ block_name }}</p>
+    <form method="POST" action="">
+        {% csrf_token %}
+
+        <br>
+        <a href="{% url 'home' %}" class="btn btn-primary btn-lg btn-danger">Cancel</a>
+        <input class="btn btn-primary btn-lg btn-success" type="submit" name="update">
+    </form>
+
+
+{% endblock %}

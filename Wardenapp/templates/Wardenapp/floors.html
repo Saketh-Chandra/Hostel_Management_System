@@ -1,0 +1,21 @@
+
+
+{% extends 'Wardenapp/main.html' %}
+
+{% block content %}
+
+{% for i in floor_list %}
+
+
+<div class="card" style="width: 18rem;">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUQ30X9zHfGTkhk45n6heuUTyssEW99ElxRQ&usqp=CAU" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{i.Floor_Number}}</h5>
+    <a href="{% url 'warden_rooms' i.id %}" class="btn btn-primary">Click Here</a>
+  </div>
+</div>
+
+{% endfor %}
+{% endblock %}
+
+

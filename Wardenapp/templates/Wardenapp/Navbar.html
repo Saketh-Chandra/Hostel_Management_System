@@ -1,0 +1,29 @@
+{% load static %}
+
+
+<style>
+    .hello-msg {
+        font-size: 18px;
+        color: #fff;
+        margin-right: 20px;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'default_home_name' %}">Home</a>
+            </li>
+            {% if user.is_superuser %}
+                <li class="nav-item active">
+                <a class="nav-link" href="/admin">admin</a>
+            {% endif %}
+            </li>
+        </ul>
+    </div>
+
+    <span class="hello-msg">Hello, {{ request.user|title }}!</span>
+    <span><a class="hello-msg" href="{% url 'logout_page' %}">Logout</a></span>
+
+</nav>

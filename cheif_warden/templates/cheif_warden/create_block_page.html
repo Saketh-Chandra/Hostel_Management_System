@@ -1,0 +1,12 @@
+{% extends 'cheif_warden/main.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form_table }}
+        <input type="submit" name="save">
+    </form>
+
+
+{% endblock %}

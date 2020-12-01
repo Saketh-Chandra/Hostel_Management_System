@@ -1,7 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.conf import settings
+
+User = settings.AUTH_USER_MODEL
 
 
 # Create your models here.
@@ -22,16 +25,13 @@ class floors(models.Model):
 
 
 class warden(models.Model):
-    Warden_ID = models.CharField(max_length=20, null=True)
+    Warden_ID = models.ForeignKey(User, limit_choices_to={'groups__name': "warden"}, null=True,
+                                  on_delete=models.SET_NULL)
     Block_Name = models.ForeignKey(blocks, null=True, on_delete=models.SET_NULL)
     Floor_Number = models.ForeignKey(floors, null=True, on_delete=models.SET_NULL)
-    Name = models.CharField(max_length=20, null=True)
-    Gender = models.CharField(max_length=6, null=True)
-    DOB = models.DateField(null=True)
-    Phone_Number = models.BigIntegerField(null=True)
 
     def __str__(self):
-        return self.Warden_ID
+        return str(self.Warden_ID)
 
 
 class room(models.Model):
@@ -47,8 +47,10 @@ class room(models.Model):
             MinValueValidator(0)
         ]
     )
-    Warden_ID = models.ForeignKey(warden, null=True, on_delete=models.SET_NULL, blank=True)
-    tese_ID = models.ForeignKey(User, limit_choices_to={'groups__name': "warden"}, null=True, on_delete=models.SET_NULL)
+    Warden_id = models.ForeignKey(warden, null=True, on_delete=models.CASCADE, blank=True)
+    hide=models.BooleanField(default=False)
+
+    # tese_ID = models.ForeignKey(User, limit_choices_to={'groups__name': "warden"}, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return str(str(self.Room_No) + " " + str(self.Block_Name))

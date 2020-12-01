@@ -1,0 +1,13 @@
+{% extends 'cheif_warden/main.html' %}
+
+{% block content %}
+    <br>
+    {% for i in chief_floors_list %}
+        <a href="{% url 'chief_rooms_page' i.id %}" class="btn btn-primary btn-lg btn-warning"> {{ i }}  </a>
+    {% endfor %}
+    <p>update room for student </p>
+
+
+
+
+{% endblock %}

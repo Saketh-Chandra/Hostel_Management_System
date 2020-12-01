@@ -1,0 +1,32 @@
+{% extends 'Wardenapp/main.html' %}
+
+{% block content %}
+    <div>
+        <form method="get">
+            <table>
+                {{ myFilter.form }}
+            </table>
+            <button class="btn btn-primary" type="submit">
+                Search
+            </button>
+        </form>
+    </div>
+    <br>
+    {% for i in room_list %}
+
+
+        <div class="card" style="width: 18rem;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUQ30X9zHfGTkhk45n6heuUTyssEW99ElxRQ&usqp=CAU"
+                 class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ i.Room_No }}</h5>
+                <a href="{% url 'student_rooms_info' i.id %}" class="btn btn-primary">Click Here</a>
+            </div>
+        </div>
+        <br>
+    {% endfor %}
+
+
+{% endblock %}
+
+

@@ -1,0 +1,160 @@
+{% extends 'hostelapp/main.html' %}
+{% load static %}
+{% block content %}
+
+    <p><h1 color="red">Welcome To Hostel Room Booking</h1></p>
+
+    {% for i in data_info %}
+        <p>user name: {{ i.user }}</p>
+        <p>booked room {{ i.user_room }}</p>
+        <p>Ref No: {{ i.id }}</p>
+    {% endfor %}
+
+
+
+{% endblock %}
+
+
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Amrita university hostel management system</title>#}
+{#    <title>Bootstrap Example</title>#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">#}
+{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>#}
+{#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>#}
+{#    <style>#}
+{#        body,#}
+{#        html {#}
+{#            margin: 0;#}
+{#            padding: 0;#}
+{#            height: 100%;#}
+{#            background: #7abecc !important;#}
+{#        }#}
+{##}
+{#        .header {#}
+{#            background-color: #26d0c9;#}
+{#            color: #fff;#}
+{#            height: 130px;#}
+{#        }#}
+{##}
+{#        .header-logo {#}
+{#            float: left;#}
+{#            font-size: 36px;#}
+{#            color: #fff;#}
+{#        }#}
+{##}
+{#        .main {#}
+{#            padding: 20px 80px;#}
+{#        }#}
+{##}
+{#        .selt {#}
+{#            padding-left: 20px;#}
+{#            font-size: 36px;#}
+{#        }#}
+{##}
+{#        .copy-container {#}
+{#            color: #fff;#}
+{#        }#}
+{##}
+{#        .header-logo {#}
+{#            float: left;#}
+{#            font-size: 36px;#}
+{#            padding: 20px;#}
+{#            color: #ff4a4a;#}
+{#        }#}
+{##}
+{#        .footer {#}
+{#            background-color: #2f5167;#}
+{#            color: #fff;#}
+{#            height: 120px;#}
+{#            padding: 40px;#}
+{#        }#}
+{##}
+{#        li {#}
+{#            list-style: none;#}
+{#            font-size: 25px;#}
+{#        }#}
+{##}
+{#        .last {#}
+{#            float: left;#}
+{#            font-size: 32px;#}
+{#        }#}
+{#    </style>#}
+{##}
+{#</head>#}
+{#<body>#}
+{##}
+{##}
+{#<div class="header" style="background-color:lavender;">#}
+{#    <div>#}
+{#        <div class="col-md-8">#}
+{#            <p class="header-logo">Welcome to Amrita university Hostel Management System</p>#}
+{#        </div>#}
+{#        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTBT6bowbW_G9KBgJswk5WDUXGpGG0OYvhjRA&usqp=CAU"#}
+{#             align="right">#}
+{#    </div>#}
+{#</div>#}
+{#<div class="main">#}
+{#    <div class="copy-container">#}
+{#        <h1> Mathura block Hostel Management System<span>.</span></h1>#}
+{#    </div>#}
+{#    <div class="row">#}
+{#        <div class="col-sm-4" style="background-color:lavender;">#}
+{#            <p class="selt">select a floor</p></div>#}
+{#    </div>#}
+{#    <div>#}
+{#        <br>#}
+{#        <div class="card bg-primary text-white">#}
+{#            <div class="card-body">floor 2</div>#}
+{#        </div>#}
+{#        <br>#}
+{#        <div class="card bg-primary text-white">#}
+{#            <div class="card-body">floor 3</div>#}
+{#        </div>#}
+{#        <br>#}
+{#        <div class="card bg-primary text-white">#}
+{#            <div class="card-body">floor 4</div>#}
+{#        </div>#}
+{#        <br>#}
+{#        <div class="card bg-primary text-white">#}
+{#            <div class="card-body">floor 5</div>#}
+{#        </div>#}
+{#        <br>#}
+{#        <div class="card bg-primary text-white">#}
+{#            <div class="card-body">floor 6</div>#}
+{#        </div>#}
+{#        <br>#}
+{#        <div class="card bg-primary text-white">#}
+{#            <div class="card-body">floor 7</div>#}
+{#        </div>#}
+{#        <br>#}
+{#        <div class="card bg-primary text-white">#}
+{#            <div class="card-body">floor 8</div>#}
+{#        </div>#}
+{#        <br>#}
+{#        <div class="card bg-primary text-white">#}
+{#            <div class="card-body">floor 9</div>#}
+{#        </div>#}
+{#        <br>#}
+{#        <div class="card bg-primary text-white">#}
+{#            <div class="card-body">floor 10</div>#}
+{#        </div>#}
+{#        <br>#}
+{#        <div class="card bg-primary text-white">#}
+{#            <div class="card-body">floor 1</div>#}
+{#        </div>#}
+{##}
+{#    </div>#}
+{#    <div class="footer">#}
+{#        <div class="last">Thank you for visiting!</div>#}
+{#    </div>#}
+{#</body>#}
+{#</html>#}
+{#<div class="copy-container">#}
+{#    <h1> Mathura block Hostel Management System<span>.</span></h1>#}
+{#</div>#}

@@ -1,0 +1,19 @@
+{% extends 'cheif_warden/main.html' %}
+
+{% block content %}
+    {% for i in block_list %}
+        <a href="{% url 'chief_floors_page' i.id %}" class="btn btn-primary btn-lg btn-warning">{{ i }} </a>
+    {% endfor %}
+
+    <div class="container">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label for="Ref_No">Enter Student Ref No to update the room: </label>
+            <input id="Ref_No" class="form-control" type="text" placeholder="Ref_No" name="Ref_No">
+            <br>
+            <input type="submit" class="btn btn-primary" value="submit">
+        </form>
+    </div>
+
+
+{% endblock %}

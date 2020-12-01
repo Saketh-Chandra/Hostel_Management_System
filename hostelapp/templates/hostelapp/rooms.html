@@ -1,0 +1,17 @@
+{% extends 'hostelapp/main.html' %}
+{% load static %}
+{% block content %}
+    <h3>list of floors:</h3>
+
+
+    {% for i in roomlist %}
+        {% if i.hide %}
+        {% else %}
+            <P align="middle"><a href="{% url 'confirmation_booking' i.id %}"
+                                 class="btn btn-primary btn-lg btn-warning">{{ i }}</a></P>
+
+        {% endif %}
+    {% endfor %}
+
+
+{% endblock %}
