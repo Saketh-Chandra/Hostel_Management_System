@@ -2,7 +2,7 @@
 ## :heavy_exclamation_mark: This is still in the development phase!
 * Coming Soon!!....
 * This is a Hostel Room Booking system using Django and Python!-->
-
+![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/Saketh-Chandra/Hostel_Room_Booking?include_prereleases)
 # This is a Centralized database to allot hostel rooms to the college students
 This a web application where a user can login and create the tasks, this was built with the [Django](https://www.djangoproject.com/) web application framework
 
