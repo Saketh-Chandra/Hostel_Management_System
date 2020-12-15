@@ -6,6 +6,7 @@
 [![GitHub license](https://img.shields.io/github/license/Saketh-Chandra/Hostel_Room_Booking)](https://github.com/Saketh-Chandra/Hostel_Room_Booking/blob/master/LICENSE)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Saketh-Chandra/Hostel_Room_Booking)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Saketh-Chandra/Hostel_Room_Booking)
+![GitHub top language](https://img.shields.io/github/languages/top/Saketh-Chandra/Hostel_Room_Booking)
 # This is a Centralized database to allot hostel rooms to the college students
 This a web application where a user can login and create the tasks, this was built with the [Django](https://www.djangoproject.com/) web application framework
 
