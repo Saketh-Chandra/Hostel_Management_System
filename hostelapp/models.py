@@ -48,7 +48,7 @@ class room(models.Model):
         ]
     )
     Warden_id = models.ForeignKey(warden, null=True, on_delete=models.CASCADE, blank=True)
-    hide=models.BooleanField(default=False)
+    hide = models.BooleanField(default=False)
 
     # tese_ID = models.ForeignKey(User, limit_choices_to={'groups__name': "warden"}, null=True, on_delete=models.SET_NULL)
 
@@ -57,8 +57,10 @@ class room(models.Model):
 
 
 class student_room(models.Model):
-    user = models.ForeignKey(User, limit_choices_to={'groups__name': "student"}, on_delete=models.CASCADE, null=False,
-                             unique=True)
+    user = models.OneToOneField(User, limit_choices_to={'groups__name': "student"}, on_delete=models.CASCADE,
+                                null=False,
+                                unique=True)
+    # user = models.ForeignKey(User, limit_choices_to={'groups__name': "student"}, on_delete=models.CASCADE, null=False,unique=True)
     user_room = models.ForeignKey(room, on_delete=models.CASCADE, null=False)
 
     def __str__(self):
