@@ -67,7 +67,9 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on contributing.
 # 💡 Future implemention ideas! 
  * Online attendance system 
  * Gate pass system 
- * Raise an issue in hostal
+ * Raise an issue in hostel
+ * Email verification
+ * ReCaption V3 Implementation
  
 
 
