@@ -18,6 +18,8 @@ from django.urls import path, include
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from accounts.views import default_home
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', default_home, name='default_home_name'),
@@ -25,6 +27,9 @@ urlpatterns = [
     path('accounts/', include('accounts.url')),
     path('student/', include('hostelapp.url')),
     path('cheif_warden/', include('cheif_warden.url')),
-    path('warden/',include('Wardenapp.urls')),
+    path('warden/', include('Wardenapp.urls')),
 
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

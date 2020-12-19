@@ -24,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'i0xgaha(++2)09&zhs(s(v43ob1%j62&&@++$_2we*i3!n(bo5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 1
+DEBUG = 0
 
-ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1']
+my_localhost = 'pc.local'  # my PC local DNS name
+ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1', my_localhost]
 
 # Application definition
 
@@ -46,12 +47,14 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 # # SECURITY MIDDLEWARE # Source: https://github.com/django/django/blob/master/django/conf/global_settings.py
@@ -138,3 +141,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+# Source : http://whitenoise.evans.io/en/stable/django.html
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'  # not encrypted file storage
+# 'whitenoise.storage.CompressedManifestStaticFilesStorage'              # encrypted file storage
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
