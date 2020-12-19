@@ -54,6 +54,21 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# # SECURITY MIDDLEWARE # Source: https://github.com/django/django/blob/master/django/conf/global_settings.py
+# SECURE_HSTS_SECONDS = 3600
+# SECURE_SSL_REDIRECT = False
+# SECURE_HSTS_PRELOAD = False
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+#
+#
+# # SESSIONS #
+#
+# # Whether the session cookie should be secure (https:// only).
+# SESSION_COOKIE_SECURE = False
+#
+# # Settings for CSRF cookie.
+# CSRF_COOKIE_SECURE = False
+
 ROOT_URLCONF = 'Hostel_Room_Booking.urls'
 
 TEMPLATES = [
