@@ -15,7 +15,7 @@ the available rooms based on their interest.
 
 ## Problem:
 In the previous system for booking rooms there were many problems faced by students like
-standing in the queues, waiting for longer hours because of manual entry. Therefore, the need
+standing in the queues, waiting foor longer hours because of manual entry. Therefore, the need
 for automation is a necessity. 
 
 ## Solution:
