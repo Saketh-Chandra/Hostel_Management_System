@@ -2,6 +2,7 @@
 ## :heavy_exclamation_mark: This is still in the development phase!
 * Coming Soon!!.... V2.0
 * This is a Hostel Room Booking system using Django and Python!
+
 ![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/Saketh-Chandra/Hostel_Room_Booking?include_prereleases)
 [![GitHub license](https://img.shields.io/github/license/Saketh-Chandra/Hostel_Room_Booking)](https://github.com/Saketh-Chandra/Hostel_Room_Booking/blob/master/LICENSE)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Saketh-Chandra/Hostel_Room_Booking)
