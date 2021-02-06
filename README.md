@@ -48,8 +48,8 @@ deactivate
 ```
 ### After setting up virtual environment do this!
 ``` bash
-git clone https://github.com/Saketh-Chandra/Hostel_Room_Booking.git
-cd Hostel_Room_Booking
+git clone https://github.com/Saketh-Chandra/Hostel_Management_System.git
+cd Hostel_Management_System
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py createsuperuser
