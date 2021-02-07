@@ -4,7 +4,7 @@ All contributions are welcome! Code, documentation, softwares, scripts, graphics
 
 # I found some bugs or issues. Where do I report?
 
-Report [here](https://github.com/Saketh-Chandra/Hostel_Room_Booking/issues/new) in detail answering these questions:
+Report [here](https://github.com/Saketh-Chandra/Hostel_Management_System/issues/new) in detail answering these questions:
 
 * What steps did you take to make the bug appear?
 * How can the bug be fixed? (Incase you know)
@@ -14,4 +14,4 @@ Report [here](https://github.com/Saketh-Chandra/Hostel_Room_Booking/issues/new) 
 
 # How do I contact the team?
 
-Check [here](https://github.com/Saketh-Chandra/Hostel_Room_Booking/graphs/contributors) for the list of contributors. Contact one of them through their profiles.
+Check [here](https://github.com/Saketh-Chandra/Hostel_Management_System/graphs/contributors) for the list of contributors. Contact one of them through their profiles.
