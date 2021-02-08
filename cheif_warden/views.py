@@ -12,6 +12,7 @@ User = settings.AUTH_USER_MODEL
 # Create your views here.
 @allowed_users(allowed_roles=['chief warden'])
 def cheif_warden(request):
+    print("hello world!!!!!!!1")
     block_list = blocks.objects.all()
     if request.method == 'POST':
         Ref_No = request.POST.get('Ref_No')
@@ -224,3 +225,4 @@ def update_warden(request, pk):
         message = "Warden dose not existed !"
         messages.error(request, message)
         return redirect('cheif_warden_home')
+## def delete_warden()

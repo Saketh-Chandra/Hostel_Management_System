@@ -1,10 +1,11 @@
 {% extends 'cheif_warden/main.html' %}
 
 {% block content %}
-    <h5>Student name: {{ student_info_room.user }}</h5>
+    <h5>Student name: {{ student_info_room.user|title }}</h5>
     <form method="POST" action="">
         {% csrf_token %}
-        {{ student_room_form }}
+        <label for="id_user_room">User room:</label>
+        {{ student_room_form.user_room }}
         <br>
         <a href="{% url 'default_home_name' %}" class="btn btn-danger" role="button">Cancel</a>
         <input type="submit" class="btn btn-primary" name="update">

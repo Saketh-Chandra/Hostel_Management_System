@@ -10,9 +10,9 @@ from accounts.decorators import *
 def home_view_student(request):
     info = student_room.objects.filter(user=request.user)
     context = {'data_info': info}
-    # print(info, '-------')
-    for i in info:
-        print(i.user_room_id,i.id)
+    # for i in info:
+    #     print(i.user_room_id,i.id)
+    print(not info)
     return render(request, 'hostelapp/home.html', context=context)
 
 
@@ -92,6 +92,3 @@ def booking_form_views(request, pk):
 
     context = {'room_number': room_number, 'floor_number': floor_number, 'block_name': block_name}
     return render(request, 'hostelapp/Booking_form_page.html', context)
-
-
-

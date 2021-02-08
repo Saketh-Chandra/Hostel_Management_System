@@ -2,10 +2,21 @@
 
 {% block content %}
     <br>
-    {% for i in chief_floors_list %}
-        <a href="{% url 'chief_rooms_page' i.id %}" class="btn btn-primary btn-lg btn-warning"> {{ i }}  </a>
-    {% endfor %}
-    <p>update room for student </p>
+    <div class="row">
+        {% for i in chief_floors_list %}
+            <div class="col-sm">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i|title }}</h5>
+                        <a href="{% url 'chief_rooms_page' i.id %}" class="btn btn-outline-primary">Click Here</a>
+                    </div>
+                </div>
+                <br>
+            </div>
+            {#        <a href="{% url 'chief_rooms_page' i.id %}" class="btn btn-primary btn-lg btn-warning"> {{ i }}  </a>#}
+        {% endfor %}
+    </div>
+
 
 
 

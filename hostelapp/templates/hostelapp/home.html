@@ -1,14 +1,24 @@
 {% extends 'hostelapp/main.html' %}
 {% load static %}
 {% block content %}
-
-    <p><h1 color="red">Welcome To Hostel Room Booking</h1></p>
-
-    {% for i in data_info %}
-        <p>user name: {{ i.user }}</p>
-        <p>booked room {{ i.user_room }}</p>
-        <p>Ref No: {{ i.id }}</p>
-    {% endfor %}
+    <br>
+    <h1 color="red">Welcome To Hostel Management System </h1>
+    <br>
+    <div class="card">
+        <div class="card-body">
+            {% if data_info %}
+            {% for i in data_info %}
+                <h5 class="card-title">Student Name: {{ i.user|title }}</h5>
+                <p>Student Email: {{ i.user.email }}</p>
+                <p>Booked Room: {{ i.user_room|title }}</p>
+                <p>Ref No: {{ i.id }}</p>
+            {% endfor %}
+        {% else %}
+                <h1>Do you want to book a room?</h1>
+                <a href="{% url 'block' %}" class="btn btn-primary btn-lg btn-warning">click here</a>
+        {% endif %}
+        </div>
+    </div>
 
 
 

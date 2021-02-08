@@ -1,10 +1,21 @@
 {% extends 'cheif_warden/main.html' %}
 
-{% block content %}
-    {% for i in block_list %}
-        <a href="{% url 'chief_floors_page' i.id %}" class="btn btn-primary btn-lg btn-warning">{{ i }} </a>
-    {% endfor %}
 
+{% block content %}
+    <div class="row">
+        {% for i in block_list %}
+            <div class="col-sm">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i|title }}</h5>
+                        <a href="{% url 'chief_floors_page' i.id %}" class="btn btn-outline-primary">Click Here</a>
+                    </div>
+                </div>
+                <br>
+                {#        <a href="{% url 'chief_floors_page' i.id %}" class="btn btn-primary btn-lg btn-warning">{{ i }} </a>#}
+            </div>
+        {% endfor %}
+    </div>
     <div class="container">
         <form action="" method="POST">
             {% csrf_token %}
