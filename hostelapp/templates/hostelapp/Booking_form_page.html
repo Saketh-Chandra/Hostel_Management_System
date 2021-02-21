@@ -3,13 +3,28 @@
 {% load static %}
 
 {% block content %}
+<style>
+    body {
+background-color: rgb(148, 229, 240);
 
+}
+</style>
 
-    <h1>Hi this is your Room Confirmation Page.</h1>
-
-    <p> Your Booking Room Number is {{ room_number }} </p>
-    <p>Your Floor Number is {{ floor_number.Floor_Number }}</p>
-    <p>Your Block Number is {{ block_name }}</p>
+    <h1 align="middle">Hi this is your Room Confirmation Page.</h1>
+    <br>
+    <!-- <p align="middle"> Your Booking Room Number is {{ room_number }} </p>
+    <p align="middle">Your Floor Number is {{ floor_number.Floor_Number }}</p>
+    <p align="middle">Your Block Number is {{ block_name }}</p> -->
+    <div align="middle">
+    <div align="middle" class="card text-white bg-danger mb-3" style="max-width: 25rem">
+        <h3><div style="color:yellow" class="card-header">Please Confirm the Details Below</div></h3>
+        <div class="card-body text-primary">
+          <h5 style="color:white" class="card-text">Your Booking Room Number is {{ room_number }}</h5>
+          <h5 style="color:rgb(255,255, 255)" class="card-text">Your Floor Number is {{ floor_number.Floor_Number}}</h5>
+          <h5 style="color:white" class="card-text">Your Block Number is {{ block_name }}</h5>
+        </div>
+      </div>
+    </div>
     <form method="POST" action="">
         {% csrf_token %}
 

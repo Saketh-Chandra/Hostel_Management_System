@@ -2,9 +2,17 @@
 {% load static %}
 {% block content %}
 
+<style>
+    body {
+background-color: rgb(148, 229, 240);
+
+}
+</style>
+<p><h1 align="middle">Please Select a Block</h1></p>
+<br>
     {% for i in blocks_list %}
-        <p></p>
-        <a href="{% url 'floor' i.id %}" class="btn btn-primary btn-lg btn-danger">{{ i.Block_Name }}</a>
+        <p align="middle"><a href="{% url 'floor' i.id %}" class="btn btn-primary btn-lg btn-danger">{{ i.Block_Name }}</a></p>
+
     {% endfor %}
 
 

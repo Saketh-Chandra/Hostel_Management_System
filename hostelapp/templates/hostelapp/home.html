@@ -1,21 +1,31 @@
 {% extends 'hostelapp/main.html' %}
 {% load static %}
 {% block content %}
-    <br>
-    <h1 color="red">Welcome To Hostel Management System </h1>
-    <br>
+<p><h1 color="red"><center>Welcome To Chatravaas</center></h1></p>
+<br>
+<br>
+    
+<style>
+    body {
+background-color: rgb(148, 229, 240);
+
+}
+</style>
     <div class="card">
         <div class="card-body">
             {% if data_info %}
             {% for i in data_info %}
+            <div align="middle">
                 <h5 class="card-title">Student Name: {{ i.user|title }}</h5>
                 <p>Student Email: {{ i.user.email }}</p>
                 <p>Booked Room: {{ i.user_room|title }}</p>
                 <p>Ref No: {{ i.id }}</p>
+            </div>
             {% endfor %}
         {% else %}
-                <h1>Do you want to book a room?</h1>
-                <a href="{% url 'block' %}" class="btn btn-primary btn-lg btn-warning">click here</a>
+                <h1 align="middle">Book a Hostel Room Here</h1>
+                <br>
+                <div align="middle"><a href="{% url 'block' %}" class="btn btn-primary btn-lg btn-warning">Book Here</a></div>
         {% endif %}
         </div>
     </div>
