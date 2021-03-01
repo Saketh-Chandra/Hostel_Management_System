@@ -16,8 +16,8 @@ def home(request):
 @allowed_users(allowed_roles=['warden'])
 def blocks_view(request):
     wardenname = warden.objects.filter(Warden_ID=request.user)
-    print(wardenname, request.user)
-    context = {'warden': wardenname}
+    #print(wardenname, request.user)
+    context = {'warden': wardenname, 'warden_name':request.user}
     return render(request, 'Wardenapp/blocks.html', context)
 
 

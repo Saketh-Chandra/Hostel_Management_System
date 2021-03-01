@@ -1,6 +1,12 @@
 {% extends 'Wardenapp/main.html' %}
 
 {% block content %}
+    <style>
+    body {
+background-color: powderblue;
+
+}
+</style>
     <div>
         <form method="get">
             <table>
@@ -12,21 +18,24 @@
         </form>
     </div>
     <br>
-    {% for i in room_list %}
-
-
-        <div class="card" style="width: 18rem;">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUQ30X9zHfGTkhk45n6heuUTyssEW99ElxRQ&usqp=CAU"
-                 class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{ i.Room_No }}</h5>
-                <a href="{% url 'student_rooms_info' i.id %}" class="btn btn-primary">Click Here</a>
+    <div class="row">
+        {% for i in room_list %}
+            <div class="col-lg-3 col-md-4 mb-3" style="width: 18rem;">
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUQ30X9zHfGTkhk45n6heuUTyssEW99ElxRQ&usqp=CAU"
+                         class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Room No: {{ i.Room_No }}</h5>
+                        <div class="card-footer">
+                            <a href="{% url 'student_rooms_info' i.id %}" class="btn btn-primary">Click Here</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <br>
-    {% endfor %}
+            <br>
 
-
+        {% endfor %}
+    </div>
 {% endblock %}
 
 
