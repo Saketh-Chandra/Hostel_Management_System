@@ -40,6 +40,27 @@ def floors_view(request, pk):
 
 
 @allowed_users(allowed_roles=['warden'])
+def gate_view(request):
+    temp=warden.objects.get(Warden_ID_id=request.user.id)
+    gate_pass_stud=gatepass.objects.filter(Warden_id_id=temp.id)
+    context={'gatepass_stud':gate_pass_stud}
+    return render(request, 'Wardenapp/gate.html', context)
+
+
+@allowed_users(allowed_roles=['warden'])
+def approve_view(request,pk,bi):
+    appr=gatepass.objects.filter(user_id=pk)
+    for i in appr:
+        if str(i.outing_date) == str(bi):
+            i.approval_status=True
+            i.save()
+            message = "Successfully Updated"
+            messages.success(request, message)
+            break
+    return redirect('gate')
+
+
+@allowed_users(allowed_roles=['warden'])
 def rooms_view(request, pk):
     try:
         print(pk)

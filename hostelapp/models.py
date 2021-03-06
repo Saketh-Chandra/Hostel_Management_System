@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import Group
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
+from django.utils import timezone
 
 User = settings.AUTH_USER_MODEL
 
@@ -56,12 +57,28 @@ class room(models.Model):
         return str(str(self.Room_No) + " " + str(self.Block_Name))
 
 
+class gatepass(models.Model):
+    user = models.ForeignKey(User, limit_choices_to={'groups__name': "student"}, on_delete=models.CASCADE,
+                                null=False)
+    applied_date=models.DateTimeField(default=timezone.now,null=True)
+    outing_date=models.DateField(null=True)
+    return_date=models.DateField(null=True)
+    approval_status=models.BooleanField(null=True)
+    Warden_id = models.ForeignKey(warden, null=True,on_delete=models.SET_NULL)
+    def __str__(self):
+        return f'{self.user} {self.outing_date}'
+
+
 class student_room(models.Model):
     user = models.OneToOneField(User, limit_choices_to={'groups__name': "student"}, on_delete=models.CASCADE,
                                 null=False,
                                 unique=True)
     # user = models.ForeignKey(User, limit_choices_to={'groups__name': "student"}, on_delete=models.CASCADE, null=False,unique=True)
     user_room = models.ForeignKey(room, on_delete=models.CASCADE, null=False)
-
     def __str__(self):
         return f'{self.user} {self.user_room}'
+
+
+
+
+   

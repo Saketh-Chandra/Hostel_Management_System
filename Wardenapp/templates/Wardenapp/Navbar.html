@@ -20,9 +20,12 @@
                 <a class="nav-link" href="/admin">admin</a>
             {% endif %}
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'gate' %}">GatePass</a>
+            </li>
         </ul>
     </div>
-
+    
     <span class="hello-msg">Hello, {{ request.user|title }}!</span>
     <span><a class="hello-msg" href="{% url 'logout_page' %}">Logout</a></span>
 
