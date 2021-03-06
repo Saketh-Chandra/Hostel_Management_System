@@ -1,9 +1,14 @@
 {% extends 'Wardenapp/main.html' %}
 
 {% block content %}
+<style>
+    body {
+background-color: powderblue;
 
+}
+</style>
     <form method="get">
-        {{ myFilter.form }}
+        {{ myFilter.form.as_p }}
         <button class="btn btn-primary" type="submit">
             Search
         </button>
@@ -17,7 +22,7 @@
     </form>
     <br>
     <hr>
-    <table style="width:100%">
+    <table style="width:100%" class="table table-hover">
         <tr>
             <th>Student Name</th>
             <th>Email</th>
