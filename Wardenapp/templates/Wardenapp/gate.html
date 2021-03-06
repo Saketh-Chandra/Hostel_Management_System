@@ -1,0 +1,66 @@
+{% extends 'Wardenapp/main.html' %}
+
+{% block content %}
+
+
+
+<style>
+    body {
+    background-color: rgb(148, 229, 240);
+    }
+    .card{
+    background-color: rgb(160, 255, 176);
+    }
+    
+</style>
+<br>
+<br>
+<div class="card">
+    <div class="card-body">
+        <h2 align='center'>Hi Mr.{{request.user|title}}! Check Your Students Gate Pass History below</h2>
+        <br>
+        <br>
+
+
+        <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <!-- <th scope="col">#</th> -->
+                <th scope="col">Student Name</th>
+                <th scope="col">Applied Date</th>
+                <th scope="col">Outing Date</th>
+                <th scope="col">Return Date</th>
+                <th scope="col">Approval Status</th>
+                <th scope="col">Approve</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for hist in gatepass_stud %}
+              <tr>
+                <td>{{ hist.user|title }}</td>
+               <td>{{ hist.applied_date }}</td>
+               <td>{{ hist.outing_date }}</td>
+               <td>{{ hist.return_date }}</td>
+               {% if hist.approval_status == False %}
+               <td>Not Approved</td>
+               <td><a href="{% url 'approval' pk=hist.user_id bi=hist.outing_date %}" class="btn btn-sm btn-primary btn-warning" >Approve</a></td>
+               {% endif %}
+               {% if hist.approval_status == True %}
+               <td>Approved</td>
+               <td><button type="button" class="btn btn-sm btn-primary btn-warning" disabled>Approve</button></td>
+               {% endif %}
+
+               
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+    </div>
+
+</div>
+
+
+
+
+
+{% endblock %}

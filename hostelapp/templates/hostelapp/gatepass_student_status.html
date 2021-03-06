@@ -1,0 +1,54 @@
+{% extends 'hostelapp/main.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+    body {
+    background-color: rgb(148, 229, 240);
+    }
+    .card{
+    background-color: rgb(160, 255, 176);
+    
+}
+</style>
+<br>
+<br>
+<div class="card">
+    <div class="card-body">
+        <h2 align='center'>Hi {{request.user|title}}! Check Your Gate Pass History below</h2>
+        <br>
+        <br>
+
+
+        <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <!-- <th scope="col">#</th> -->
+                <th scope="col">Applied Date</th>
+                <th scope="col">Outing Date</th>
+                <th scope="col">Return Date</th>
+                <th scope="col">Approval Status</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for hist in history %}
+              <tr>
+               <td>{{ hist.applied_date }}</td>
+               <td>{{ hist.outing_date }}</td>
+               <td>{{ hist.return_date }}</td>
+               {% if hist.approval_status == False %}
+               <td>Not Approved</td>
+               {% endif %}
+               {% if hist.approval_status == True %}
+               <td>Approved</td>
+               {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+    </div>
+
+</div>
+
+{% endblock %}

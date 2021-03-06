@@ -1,7 +1,14 @@
 {% extends 'hostelapp/main.html' %}
 {% load static %}
 {% block content %}
-    <h3>list of floors:</h3>
+<style>
+    body {
+background-color: rgb(148, 229, 240);
+
+}
+</style>
+<p><h1 align="middle">Please Select a Room</h1></p>
+<br>
 
 
     {% for i in roomlist %}
