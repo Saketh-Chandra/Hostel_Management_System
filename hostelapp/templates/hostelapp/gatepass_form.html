@@ -1,0 +1,58 @@
+{% extends 'hostelapp/main.html' %}
+
+{% load static %}
+
+{% block content %}
+<br>
+<br>
+<h1 align="middle"> Hello {{request.user|title}}! You can now Book your Gate Pass online here</h1>
+<br>
+<br>
+<br>
+<style>
+body {
+    background-color: rgb(148, 229, 240);
+    }
+    .card{
+    background-color: rgb(160, 255, 176);
+    
+}
+.space a{
+    margin-right:30px;
+}
+
+</style>
+
+<div class="card">
+    <div class="card-body">
+            <h2 align="middle">Enter Details to Book a Gate Pass</h2>
+            <br>
+            <form align="center" method="POST" action="">
+                {% csrf_token %}
+                <br>
+                <h5>{{ form.outing_date.label }}:</h5>
+                {{ form.outing_date }}
+                <br>
+                <br>
+                <h5>{{ form.return_date.label }}:</h5>
+                {{ form.return_date }}
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="space">
+                <a href="{% url 'home' %}" class="btn btn-primary btn-lg btn-danger">Cancel</a>
+            
+                <input class="btn btn-primary btn-lg btn-success" type="submit" name="update">
+            </div>
+                
+                
+                
+            </form>
+  
+    </div>
+</div>
+
+
+
+{% endblock %}
