@@ -16,8 +16,8 @@ def home(request):
 @allowed_users(allowed_roles=['warden'])
 def blocks_view(request):
     wardenname = warden.objects.filter(Warden_ID=request.user)
-    #print(wardenname, request.user)
-    context = {'warden': wardenname, 'warden_name':request.user}
+    # print(wardenname, request.user)
+    context = {'warden': wardenname, 'warden_name': request.user}
     return render(request, 'Wardenapp/blocks.html', context)
 
 
@@ -31,28 +31,35 @@ def blocks_view(request):
 
 @allowed_users(allowed_roles=['warden'])
 def floors_view(request, pk):
-    print(pk)
-    # block_tem = blocks.objects.filter(id=pk)
     floor_list = floors.objects.filter(id=pk)
     print(floor_list)
-    context = {'floor_list': floor_list}
-    return render(request, 'Wardenapp/floors.html', context)
+    wanden_name = warden.objects.filter(Warden_ID=request.user)
+    warden_floor_list = [i.Floor_Number for i in wanden_name]
+    check = any(item in warden_floor_list for item in floor_list)
+    if check:
+        context = {'floor_list': floor_list}
+        return render(request, 'Wardenapp/floors.html', context)
+    else:
+        message = "Page dose not exist or You are not authorized to view this page"
+        messages.error(request, message)
+        print(message)
+        return redirect('default_home_name')
 
 
 @allowed_users(allowed_roles=['warden'])
 def gate_view(request):
-    temp=warden.objects.get(Warden_ID_id=request.user.id)
-    gate_pass_stud=gatepass.objects.filter(Warden_id_id=temp.id)
-    context={'gatepass_stud':gate_pass_stud}
+    temp = warden.objects.get(Warden_ID_id=request.user.id)
+    gate_pass_stud = gatepass.objects.filter(Warden_id_id=temp.id)
+    context = {'gatepass_stud': gate_pass_stud}
     return render(request, 'Wardenapp/gate.html', context)
 
 
 @allowed_users(allowed_roles=['warden'])
-def approve_view(request,pk,bi):
-    appr=gatepass.objects.filter(user_id=pk)
+def approve_view(request, pk, bi):
+    appr = gatepass.objects.filter(user_id=pk)
     for i in appr:
         if str(i.outing_date) == str(bi):
-            i.approval_status=True
+            i.approval_status = True
             i.save()
             message = "Successfully Updated"
             messages.success(request, message)
