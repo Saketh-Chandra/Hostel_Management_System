@@ -1,13 +1,18 @@
 {% extends 'cheif_warden/main.html' %}
 
 {% block content %}
+
     <br>
-    <div class="row">
+<div class="row">
         {% for i in chief_floors_list %}
             <div class="col-sm">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">{{ i|title }}</h5>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUQ30X9zHfGTkhk45n6heuUTyssEW99ElxRQ&usqp=CAU"
+                             class="card-img-top" alt="...">
+                        <hr>
+                        <br>
                         <a href="{% url 'chief_rooms_page' i.id %}" class="btn btn-outline-primary">Click Here</a>
                     </div>
                 </div>
@@ -15,7 +20,7 @@
             </div>
             {#        <a href="{% url 'chief_rooms_page' i.id %}" class="btn btn-primary btn-lg btn-warning"> {{ i }}  </a>#}
         {% endfor %}
-    </div>
+</div>
 
 
 
