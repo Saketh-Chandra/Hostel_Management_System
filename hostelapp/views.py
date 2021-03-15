@@ -3,7 +3,7 @@ from django.contrib import messages
 from .models import *
 from .forms import *
 from accounts.decorators import *
-import datetime 
+import datetime
 
 
 # Create your views here.
@@ -30,70 +30,70 @@ def block_views(request):
 #     return render(request, 'hostelapp/sample.html')
 @allowed_users(allowed_roles=['student'])
 def gatepass_state(request):
-    gatepass_history=gatepass.objects.filter(user=request.user)
-    context={'history':gatepass_history}
+    gatepass_history = gatepass.objects.filter(user=request.user)
+    context = {'history': gatepass_history}
     return render(request, 'hostelapp/gatepass_student_status.html', context)
-
 
 
 @allowed_users(allowed_roles=['student'])
 def gatepass_view(request):
-    form_k=GatepassForm()
+    form_k = GatepassForm()
     # dates=datetime.date.today()
     # datestr=dates.strftime('%Y-%m-%d')
     # present_month=int(datestr[5]+datestr[6])
-    outingdates=gatepass.objects.filter(user=request.user)
-    
-    if request.method=='POST':
-                
-                #form_k=GatepassForm(request.POST,instance=stud)
-                #form_k.user=request.user
-                form_k=GatepassForm(request.POST)
-                if(form_k.is_valid()):
-                    confirm=form_k.save(commit=False)
-                    confirm.user=request.user
-                    confirm.approval_status=False
-                    stu_room=student_room.objects.get(user=request.user).user_room.id
-                    room_gets=room.objects.get(id=stu_room)
-                    stu_warden=room_gets.Warden_id_id
-                    stud_warden=stu_warden
-                    confirm.Warden_id_id=stud_warden
-                    # stu_room=student_room.objects.get(user=request.user).user_room
-                    # room_gets=room.objects.get(Room_No=stu_room)
-                    # stu_warden=room_gets.Warden_id
-                    # print("final "+str(stu_warden))
-                    formout_date_str=form_k.cleaned_data['outing_date']
-                    temp_date=formout_date_str.strftime('%Y-%m-%d')
-                    formout_date_int=int(temp_date[5]+temp_date[6])
-                    count=0
-                    for outing in outingdates:
-                        temp_date=outing.outing_date.strftime('%Y-%m-%d')
-                        tempint_date=int(temp_date[5]+temp_date[6])
-                        if(formout_date_int==tempint_date):
-                            count+=1
-                    # print("count= "+str(count))
-                    if(count>=2):
-                        message = "You already have 2 Gatepass for this month. Try again Next Month"
-                        messages.error(request, message)
-                        print(message)
-                        return redirect('home')
-                    else:
+    outingdates = gatepass.objects.filter(user=request.user)
 
-                        confirm.save()
-                        # print(form_k)
-                        message = 'Your Gatepass is Confirmed'
-                        messages.success(request, message)
-                        print(message)
-                        return redirect('home')
-                else:
-                    message = "Fill the form Properly"
-                    messages.error(request, message)
-                    # print(message)
-                # url = 'rooms/floor_id/'
-                    return redirect('home')
+    if request.method == 'POST':
 
-    context={'form':form_k}
+        # form_k=GatepassForm(request.POST,instance=stud)
+        # form_k.user=request.user
+        form_k = GatepassForm(request.POST)
+        if (form_k.is_valid()):
+            confirm = form_k.save(commit=False)
+            confirm.user = request.user
+            confirm.approval_status = False
+            stu_room = student_room.objects.get(user=request.user).user_room.id
+            room_gets = room.objects.get(id=stu_room)
+            stu_warden = room_gets.Warden_id_id
+            stud_warden = stu_warden
+            confirm.Warden_id_id = stud_warden
+            # stu_room=student_room.objects.get(user=request.user).user_room
+            # room_gets=room.objects.get(Room_No=stu_room)
+            # stu_warden=room_gets.Warden_id
+            # print("final "+str(stu_warden))
+            formout_date_str = form_k.cleaned_data['outing_date']
+            temp_date = formout_date_str.strftime('%Y-%m-%d')
+            formout_date_int = int(temp_date[5] + temp_date[6])
+            count = 0
+            for outing in outingdates:
+                temp_date = outing.outing_date.strftime('%Y-%m-%d')
+                tempint_date = int(temp_date[5] + temp_date[6])
+                if (formout_date_int == tempint_date):
+                    count += 1
+            # print("count= "+str(count))
+            if (count >= 2):
+                message = "You already have 2 Gatepass for this month. Try again Next Month"
+                messages.error(request, message)
+                print(message)
+                return redirect('home')
+            else:
+
+                confirm.save()
+                # print(form_k)
+                message = 'Your Gatepass is Confirmed'
+                messages.success(request, message)
+                print(message)
+                return redirect('home')
+        else:
+            message = "Fill the form Properly"
+            messages.error(request, message)
+            # print(message)
+            # url = 'rooms/floor_id/'
+            return redirect('home')
+
+    context = {'form': form_k}
     return render(request, 'hostelapp/gatepass_form.html', context)
+
 
 @allowed_users(allowed_roles=['student'])
 @is_student_booked

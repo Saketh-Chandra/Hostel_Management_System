@@ -2,17 +2,29 @@
 {% load static %}
 {% block content %}
 
-<style>
-    body {
-background-color: rgb(148, 229, 240);
+    <style>
+        body {
+            background-color: rgb(148, 229, 240);
 
-}
-</style>
-<p><h1 align="middle">Please Select a Block</h1></p>
-<br>
+        }
+    </style>
+    <p><h1 align="middle">Please Select a Block</h1></p>
+    <br>
+    <div class="row" style="{background-color: powderblue;}">
     {% for i in blocks_list %}
-        <p align="middle"><a href="{% url 'floor' i.id %}" class="btn btn-primary btn-lg btn-danger">{{ i.Block_Name }}</a></p>
+        {#        <p align="middle"><a href="{% url 'floor' i.id %}" class="btn btn-primary btn-lg btn-danger">{{ i.Block_Name }}</a></p>#}
 
+        <div class="col-lg-3 col-md-4 mb-3" style="width: 18rem;">
+            <div class="card">
+                <img src="https://i.ibb.co/qJfRrXB/Screenshot-2020-11-26-13-01-14-22.jpg" class="card-img-top"
+                     alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ i.Block_Name }}</h5>
+                    <a href="{% url 'floor' i.id %}" class="btn btn-primary">Click Here</a>
+                </div>
+            </div>
+        </div>
+        <hr>
     {% endfor %}
 
 

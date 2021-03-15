@@ -3,23 +3,36 @@
 {% load static %}
 
 {% block content %}
-<style>
-    body {
-background-color: rgb(148, 229, 240);
+    <style>
+        body {
+            background-color: rgb(148, 229, 240);
 
-}
-</style>
-<p><h1 align="middle">Please Select a Floor</h1></p>
-<p></p>
+        }
+    </style>
+    <p><h1 align="middle">Please Select a Floor</h1></p>
+    <p></p>
 
     <br>
-    {% for i in floor_list %}
+    <div class="row" style="body">
+        {% for i in floor_list %}
 
-        <P align="middle"><a href="{% url 'rooms' i.id %}" class="btn btn-primary btn-lg btn-warning">{{ i }} </a></P>
+            {#        <P align="middle"><a href="{% url 'rooms' i.id %}" class="btn btn-primary btn-lg btn-warning">{{ i }} </a></P>#}
+            <div class="col-lg-3 col-md-4 mb-3" style="width: 18rem;">
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUQ30X9zHfGTkhk45n6heuUTyssEW99ElxRQ&usqp=CAU"
+                         class="card-img-top"
+                         alt="...">
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i }}</h5>
+                        <a href="{% url 'rooms' i.id %}" class="btn btn-primary">Click Here</a>
+                    </div>
+                </div>
+            </div>
+            <hr>
 
 
+        {% endfor %}
 
-    {% endfor %}
-
-
+    </div>
 {% endblock %}
