@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>Base Page</title>
+    <script src="{% static 'js/clock.js' %}"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 </head>
-<body>
+<body onload="realtimeclock()">
 {% include 'Wardenapp/Navbar.html' %}
+<div id="clock"></div>
+<div>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                <div class="alert alert-success alert-dismissible fade show">
+                    <strong color="red">Success!</strong> {{ message }}.
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+            {% elif message.tags == 'error' %}
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <strong color="red">Error!</strong> {{ message }}.
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 
-    <div>
-        {% if messages %}
-            {% for message in messages %}
-                {% if message.tags == 'success' %}
-                    <div class="alert alert-success alert-dismissible fade show">
-                        <strong color="red">Success!</strong> {{ message }}.
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    </div>
-                {% elif message.tags == 'error' %}
-                    <div class="alert alert-danger alert-dismissible fade show">
-                        <strong color="red">Error!</strong> {{ message }}.
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
+</div>
+<br>
+<div class="container">
 
-    </div>
-    <br>
-    <div class="container">
+    {% block content %}
 
-        {% block content %}
+    {% endblock %}
 
-        {% endblock %}
-
-    </div>
+</div>
 
 </body>
 

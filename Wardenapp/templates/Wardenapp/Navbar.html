@@ -7,6 +7,11 @@
         color: #fff;
         margin-right: 20px;
     }
+    .time-msg{
+        font-size: 15px;
+        color: white;
+        margin-right: 10px;
+    }
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -25,7 +30,8 @@
             </li>
         </ul>
     </div>
-    
+    <span><div id="clock" class="time-msg"><p>Time is precious.</p></div></span>
+    <span> <a class="hello-msg" href="{% url 'update_password' %}"> change Password </a></span>
     <span class="hello-msg">Hello, {{ request.user|title }}!</span>
     <span><a class="hello-msg" href="{% url 'logout_page' %}">Logout</a></span>
 
