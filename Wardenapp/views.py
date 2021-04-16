@@ -5,7 +5,8 @@ from django.http import HttpResponse
 from .forms import *
 from django.contrib import messages
 from accounts.decorators import *
-
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -115,3 +116,9 @@ def student_view(request, pk):
     context = {'student_list': student_list, 'myFilter': myFilter, 'form_hide': form_hide}
     print(student_list)
     return render(request, 'Wardenapp/student_rooms.html', context)
+
+class update_password(PasswordChangeView):
+    form_class = passwordchangingform
+    #messages.add_message(self.request, messages.INFO, 'Hello world.')
+    success_message = "Your Password was successfully Changed!"
+    success_url = reverse_lazy('warden_blocks')
