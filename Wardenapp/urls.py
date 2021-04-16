@@ -8,6 +8,8 @@ urlpatterns = [
     path('room/student/list/<str:pk>', views.student_view, name='student_rooms_info'),
     path('gate_status/', views.gate_view, name='gate'),
     # path('approval/<str:pk>',views.approve_view,name='approval'),
-    path('approval/<str:pk>/<str:bi>', views.approve_view, name='approval')
+    path('approval/<str:pk>/<str:bi>', views.approve_view, name='approval'),
+    path('update/password', views.update_password.as_view(template_name="Wardenapp/update_password.html"),
+         name="update_password"),
 
 ]
