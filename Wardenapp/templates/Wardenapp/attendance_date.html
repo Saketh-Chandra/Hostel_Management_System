@@ -1,0 +1,20 @@
+{% extends 'Wardenapp/main.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <script>
+        $(function () {
+            $("#id_datetaken").datetimepicker({
+                format: 'd/m/Y H:i',
+            });
+        });
+    </script>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.datetaken|as_crispy_field }}
+            <br>
+            <input class="btn btn-primary" type="submit" name="save">
+        </form>
+
+{% endblock %}
