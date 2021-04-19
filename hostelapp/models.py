@@ -5,6 +5,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
 from django.utils import timezone
 
+
 User = settings.AUTH_USER_MODEL
 
 
@@ -79,3 +80,23 @@ class student_room(models.Model):
 
     def __str__(self):
         return f'{self.user} {self.user_room}'
+
+class attendence_date(models.Model):
+    warden = models.ForeignKey(User, limit_choices_to={'groups__name': "warden"}, null=True,
+                                  on_delete=models.SET_NULL)
+    datetaken = models.DateTimeField()
+
+    def __str__(self):
+        return str(self.datetaken)
+
+class students_attendence(models.Model):
+    student_name = models.ForeignKey(User, limit_choices_to={'groups__name': "student"}, null=True,
+                                  on_delete=models.SET_NULL)
+    room_num = models.ForeignKey(room,on_delete=models.SET_NULL,null=True)
+    date = models.ForeignKey(attendence_date,on_delete=models.SET_NULL,null=True)
+    present = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.student_name} {self.present} {self.date}'
+
+
