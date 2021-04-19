@@ -1,0 +1,54 @@
+{% extends 'Wardenapp/main.html' %}
+{% block content %}
+{#<div>#}
+{#        <form method="get">#}
+{#            <table>#}
+{#                {{ myfilter.form}}#}
+{#            </table>#}
+{#            <button class="btn btn-primary" type="submit">#}
+{#                Search#}
+{#            </button>#}
+{#        </form>#}
+{#    </div>#}
+    <div class="row">
+    <div class="col-md">
+        <table style="width:63%">
+            <tr>
+                <td>
+                    <b>The Date of showing Attendance is on</b>
+                </td>
+                <th>
+                    <h2 style="color:orange">{{ attendance.last.date }}</h2>
+                </th>
+            </tr>
+
+        </table>
+    </div>
+    </div>
+    <br>
+<div class="row">
+        <div class="col-md">
+            <table style="width:75%">
+                <tr>
+                    <th>Student Name</th>
+                    <th>Room no</th>
+                    <th>Status</th>
+                </tr>
+                    {% for i in attendance %}
+                        <tr>
+                            <td>{{ i.student_name }}</td>
+                            <td>{{ i.room_num }}</td>
+                            {% if i.present %}
+                            <td><p style="color :darkgreen; ">Present</p></td>
+                        {% else %}
+                                <td><p style="color :red; ">Abscent</p></td>
+                        {% endif %}
+
+
+                        </tr>
+                    {% endfor %}
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
