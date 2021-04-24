@@ -1,15 +1,33 @@
 {% extends 'Wardenapp/main.html' %}
 {% block content %}
+    <style>
+table, td, th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+th, td {
+  padding: 15px;
+}
+</style>
     <div class="row">
     <div class="col-md">
-        <table style="width:63%">
+        <table style="width:70%">
             <tr>
                 <td>
                     <b>The Date of taking Attendance is on</b>
                 </td>
-                <th>
+                <td>
                     <h2 style="color:orange">{{ attendance_list.last.date }}</h2>
-                </th>
+                </td>
             </tr>
 
         </table>
@@ -23,6 +41,7 @@
                     <th>Student Name</th>
                     <th>Room no</th>
                     <th>Status</th>
+                    <th>Button</th>
                 </tr>
                 <form method="POST">
                     {% csrf_token %}

@@ -10,16 +10,34 @@
 {#            </button>#}
 {#        </form>#}
 {#    </div>#}
+    <style>
+table, td, th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+th, td {
+  padding: 15px;
+}
+</style>
     <div class="row">
     <div class="col-md">
-        <table style="width:63%">
+        <table  style="width:70%">
             <tr>
                 <td>
                     <b>The Date of showing Attendance is on</b>
                 </td>
-                <th>
+                <td>
                     <h2 style="color:orange">{{ attendance.last.date }}</h2>
-                </th>
+                </td>
             </tr>
 
         </table>
@@ -28,7 +46,7 @@
     <br>
 <div class="row">
         <div class="col-md">
-            <table style="width:75%">
+            <table class="table table-striped" style="width:75%">
                 <tr>
                     <th>Student Name</th>
                     <th>Room no</th>
