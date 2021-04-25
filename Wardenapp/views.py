@@ -159,7 +159,7 @@ def date_of_attendence(request):
                 return redirect('attendance_date')
             entered_warden = CustomUser.objects.get(username=request.user)
             attendence_date.objects.create(datetaken=date, warden=entered_warden)
-            return redirect('default_home_name')
+            return redirect('everything_to_attendance')
     context = {'form': form}
     return render(request, 'Wardenapp/attendance_date.html', context)
 
