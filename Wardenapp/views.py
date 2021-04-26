@@ -27,6 +27,18 @@ def blocks_view(request):
     floorname=block_tem.floors_set.all()
     context={'floors':floorname}
     return render(request,'Wardenapp/floors.html',context)'''
+#@allowed_users(allowed_roles=['warden'])
+def issues_view(request):
+    issues=issue_raiser.objects.all()
+    context={'issues':issues}
+    return render(request, 'Wardenapp/issues.html', context)
+
+#@allowed_users(allowed_roles=['warden'])
+def issues_detail(request,pk):
+    stud= issue_student.objects.filter(issueid_id=pk)
+
+    context={'stud':stud}
+    return render(request, 'Wardenapp/issues_det.html', context)
 
 
 @allowed_users(allowed_roles=['warden'])

@@ -1,0 +1,46 @@
+{% extends 'Wardenapp/main.html' %}
+
+{% block content %}
+
+
+<style>
+    body {
+    background-color: rgb(148, 229, 240);
+    }
+    .card{
+    background-color: rgb(160, 255, 176);
+    }
+    
+</style>
+
+<br>
+<h1 align='center' class="viewer">Issues Viewer</h1>
+
+<br>
+
+{% for i in issues %}
+<div class="row justify-content-center">
+<div class='col-6'>
+<div class="card">
+    <div class="card-body">
+            <div class="container">
+                <div align='center'>
+                <h3 >Student Name: {{ i.user|title }}</h3>
+                <br>
+            </div>
+            <h5>Issue of Concern:</h5>
+                <p>{{ i.issue }}</p>
+                
+                <a type="button"  href="{% url 'issue_detail' i.id %}" class="btn btn-primary btn-lg btn-success" >View Details</a>
+                
+                
+                
+        </div>
+        </div>
+    </div>
+</div>
+</div>
+<br>
+{% endfor %}
+
+{% endblock %}

@@ -18,6 +18,107 @@ def home_view_student(request):
 
 
 @allowed_users(allowed_roles=['student'])
+def raise_issue_view(request):
+    issues=issue_raiser.objects.all()
+    
+
+    # for iss in issues:
+    #     issue_student.objects.create(
+    #         issueid=iss.id,
+    #         upvote=False,
+    #         downvote=False,
+    #         user=request.user
+    #     )
+    stud=issue_student.objects.filter(user=request.user)
+
+    context={'issues':issues,'stud':stud}
+    return render(request, 'hostelapp/issues.html', context=context)
+
+
+def issue_raisers_view(request):
+    form=IssueRaiserForm()
+
+
+    if request.method=='POST':
+        form=IssueRaiserForm(request.POST)
+        if form.is_valid():
+            confirm=form.save(commit=False)
+            confirm.user=request.user
+            confirm.save()
+            message = 'You have successfully raise an issue'
+            messages.success(request, message)
+            print(message)
+            return redirect('home')
+        else:
+            message = "Fill the form Properly"
+            messages.error(request, message)
+            return redirect('issueraise')
+
+    context={'form':form}
+    return render(request, 'hostelapp/issue_raiserform.html', context=context)
+
+def upvote_view(request,pk):
+    
+    # issue1=issue_student.objects.get(id=pk)
+    k=0
+    stud=issue_student.objects.filter(user=request.user)
+    if stud.first():
+        for i in stud:
+            if str(i.issueid_id)==str(pk):
+                # issue_raised=issue_student.objects.get(issueid_id=pk)
+                # issue_raised.upvote=True
+                # issue_raised.downvote=False
+                k=0
+                i.upvote=True
+                i.downvote=False
+                i.save()
+                # issue_raised.save()
+                break
+            else: 
+                k=1 
+    if (not stud.first()) or k==1:
+        confirmation=issue_student()
+        confirmation.issueid_id=pk
+        confirmation.upvote=True
+        confirmation.user=request.user
+        confirmation.save()
+
+    
+    context={}
+    message = 'You have Upvoted Successfully'
+    messages.success(request, message)
+    return redirect('home')
+
+def downvote_view(request,pk):
+    context={}
+    k=0
+    stud=issue_student.objects.filter(user=request.user)
+    if stud.first():
+        for i in stud:
+            if str(i.issueid_id)==str(pk):
+                # issue_raised=issue_student.objects.get(issueid_id=pk)
+                #issue_raised.upvote=False
+               # issue_raised.downvote=True
+
+                i.upvote=False
+                i.downvote=True
+                k=0
+                i.save()
+                #issue_raised.save()
+                break
+            else: 
+                k=1 
+    if (not stud.first()) or k==1:
+        confirmation=issue_student()
+        confirmation.issueid_id=pk
+        confirmation.downvote=True
+        confirmation.user=request.user
+        confirmation.save()
+    message = 'You have Downvoted Successfully'
+    messages.success(request, message)
+    return redirect('home')
+
+@allowed_users(allowed_roles=['student'])
 @is_student_booked
 def block_views(request):
     print(request.user.groups.all()[0])
@@ -26,8 +127,6 @@ def block_views(request):
     return render(request, 'hostelapp/block_page.html', context=context)
 
 
-# def sam(request):
-#     return render(request, 'hostelapp/sample.html')
 @allowed_users(allowed_roles=['student'])
 def gatepass_state(request):
     gatepass_history=gatepass.objects.filter(user=request.user)

@@ -80,5 +80,23 @@ class student_room(models.Model):
 
 
 
+class issue_raiser(models.Model):
+    issue=models.TextField()
+    user = models.ForeignKey(User, limit_choices_to={'groups__name': "student"}, on_delete=models.CASCADE,
+                                null=False)
+    def __str__(self):
+        return str(self.id)+" "+str(self.user)
+
+class issue_student(models.Model):
+    issueid=models.ForeignKey(issue_raiser,on_delete=models.CASCADE,null=True)
+    upvote=models.BooleanField(null=False,default=False)
+    downvote=models.BooleanField(null=False,default=False)
+    user = models.ForeignKey(User, limit_choices_to={'groups__name': "student"}, on_delete=models.CASCADE,
+                                null=False)
+    def __str__(self):
+        return str(self.id)+" "+str(self.user)
+
+
+
 
    

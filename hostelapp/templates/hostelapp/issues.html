@@ -1,0 +1,62 @@
+{% extends 'hostelapp/main.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    body {
+background-color: rgb(148, 229, 240);
+
+}
+.card{
+        background-color: rgb(160, 255, 176);
+        }
+        .raise{
+            float: right;
+        }
+      
+        
+</style>
+<br>
+<div class="raise">
+    <a href="{% url 'issueraise' %}" class="btn btn-primary btn-lg btn-danger">Raise an Issue</a>
+</div>
+<br>
+<h1 align='center' class="viewer">Issues Viewer</h1>
+
+<br>
+
+{% for i in issues %}
+<div class="row justify-content-center">
+<div class='col-6'>
+<div class="card">
+    <div class="card-body">
+            <div class="container">
+                <div align='center'>
+                <h3 >Student Name: {{ i.user|title }}</h3>
+                <br>
+            </div>
+            <h5>Issue of Concern:</h5>
+                <p>{{ i.issue }}</p>
+                
+                <a type="button"  href="{% url 'upvote' i.id %}" class="btn btn-primary btn-lg btn-success" >Upvote</a>
+                <a type="button"  href="{% url 'downvote' i.id %}" class="btn btn-primary btn-lg btn-danger" >Downvote</a>
+
+                <!-- <p>{{stud.objects.all}}</p>  -->
+                <!-- <button type="button" class="btn btn-primary btn-lg btn-danger" disabled>Downvote</a> -->
+                
+                
+        </div>
+        </div>
+    </div>
+</div>
+</div>
+<br>
+{% endfor %}
+
+<script>
+    function myFunc(){
+        document.getElementById("helping").disabled = true;
+    }
+    </script>
+{% endblock %}
+

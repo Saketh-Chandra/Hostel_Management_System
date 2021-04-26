@@ -1,0 +1,49 @@
+{% extends 'hostelapp/main.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body {
+background-color: rgb(148, 229, 240);
+
+}
+.card{
+        background-color: rgb(160, 255, 176);
+        }
+        .raise{
+            float: right;
+        }
+      
+        
+</style>
+
+<br>
+
+<h1 align='center' class="viewer">Raise your Issues here</h1>
+<br>
+<div class="card">
+    <div class="card-body">
+            <h2 align="middle">Enter your Issue</h2>
+            <br>
+            <form align="center" method="POST" action="">
+                {% csrf_token %}
+                <br>
+                <h5>{{ form.issue.label }}:</h5>
+                {{ form.issue }}
+                <br>
+                <br>
+                <div class="space">
+                <a href="{% url 'home' %}" class="btn btn-primary btn-lg btn-danger">Cancel</a>
+            
+                <input class="btn btn-primary btn-lg btn-success" type="submit" name="update">
+            </div>
+                
+                
+                
+            </form>
+  
+    </div>
+</div>
+
+
+
+{% endblock %}

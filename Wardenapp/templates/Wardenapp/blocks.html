@@ -1,13 +1,12 @@
 {% extends 'Wardenapp/main.html' %}
 
 {% block content %}
-    <style>
+<style>
     body {
-background-color: powderblue;
-
-}
+        background-color: rgb(148, 229, 240);
+        }
 </style>
-    <h1>Welcome {{ warden_name|title }} Sir.</h1>
+    <h1>Welcome Mr.{{ warden_name|title }}</h1>
     <br>
     <div class="row" style="body">
         {% for i in warden %}

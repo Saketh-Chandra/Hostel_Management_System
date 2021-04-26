@@ -1,0 +1,64 @@
+{% extends 'Wardenapp/main.html' %}
+
+{% block content %}
+<style>
+    body {
+    background-color: rgb(148, 229, 240);
+    }
+    .card{
+    background-color: rgb(160, 255, 176);
+    }
+    
+</style>
+
+<br>
+<h1 align='center' class="viewer">View the Issue details here</h1>
+
+<br>
+
+
+<div class="row justify-content-center">
+    <div class='col-6'>
+    <div class="card">
+        <div class="card-body">
+                <div class="container">
+                    <div align='center'>
+                    <h4>Students who Upvoted for this Issue are</h4>
+                    <br>    
+                    {% for i in stud %}
+                            {% if i.upvote %}
+                            <p>{{i.user|title}}</p>
+                            {% endif %}
+
+                        {% endfor %}
+                    </div>
+            </div>
+        </div>
+    </div>
+            
+<br>
+<br>
+    <div class="card">
+
+        <div class="card-body">
+            <div class="container">
+                <div align='center'>
+                <h4>Students who Downvoted for this Issue are</h4>
+                <br>
+                {% for i in stud %}
+                {% if i.downvote %}
+                <p>{{i.user|title}}</p>
+                {% endif %}
+
+            {% endfor %}
+
+                </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <br>
+
+
+{% endblock %}

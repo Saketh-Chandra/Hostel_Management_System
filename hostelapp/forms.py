@@ -3,9 +3,6 @@ from django.forms import ModelForm
 from .models import *
 # from django import DateInput
 
-
-
-
 class Booking_form(forms.ModelForm):
     class Meta:
         model = student_room
@@ -22,3 +19,13 @@ class GatepassForm(forms.ModelForm):
             'outing_date': DateInput(),
             'return_date': DateInput()
         }
+
+# class IssueStudentForm(forms.ModelForm):
+#     class Meta:
+#         model=issue_student
+#         fields=['upvote','downvote']
+
+class IssueRaiserForm(forms.ModelForm):
+    class Meta:
+        model=issue_raiser
+        fields=['issue']
