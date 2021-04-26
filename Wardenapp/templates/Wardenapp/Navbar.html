@@ -1,11 +1,14 @@
-{% load static %}
-
-
 <style>
     .hello-msg {
         font-size: 18px;
         color: #fff;
         margin-right: 20px;
+    }
+
+    .time-msg {
+        font-size: 15px;
+        color: white;
+        margin-right: 10px;
     }
 </style>
 
@@ -26,9 +29,14 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'issue' %}">Issues</a>
             </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'everything_to_attendance' %}">Attendance</a>
+        </li>
         </ul>
     </div>
-    
+
+    <div id="clock" class="hello-msg"><p>Time is precious</p></div>
+    <span> <a class="hello-msg" href="{% url 'update_password' %}"> change Password </a></span>
     <span class="hello-msg">Hello, {{ request.user|title }}!</span>
     <span><a class="hello-msg" href="{% url 'logout_page' %}">Logout</a></span>
 

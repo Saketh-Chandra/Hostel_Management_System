@@ -5,6 +5,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
 from django.utils import timezone
 
+
 User = settings.AUTH_USER_MODEL
 
 
@@ -59,12 +60,13 @@ class room(models.Model):
 
 class gatepass(models.Model):
     user = models.ForeignKey(User, limit_choices_to={'groups__name': "student"}, on_delete=models.CASCADE,
-                                null=False)
-    applied_date=models.DateTimeField(default=timezone.now,null=True)
-    outing_date=models.DateField(null=True)
-    return_date=models.DateField(null=True)
-    approval_status=models.BooleanField(null=True)
-    Warden_id = models.ForeignKey(warden, null=True,on_delete=models.SET_NULL)
+                             null=False)
+    applied_date = models.DateTimeField(default=timezone.now, null=True)
+    outing_date = models.DateField(null=True)
+    return_date = models.DateField(null=True)
+    approval_status = models.BooleanField(null=True)
+    Warden_id = models.ForeignKey(warden, null=True, on_delete=models.SET_NULL)
+
     def __str__(self):
         return f'{self.user} {self.outing_date}'
 
@@ -75,10 +77,27 @@ class student_room(models.Model):
                                 unique=True)
     # user = models.ForeignKey(User, limit_choices_to={'groups__name': "student"}, on_delete=models.CASCADE, null=False,unique=True)
     user_room = models.ForeignKey(room, on_delete=models.CASCADE, null=False)
+
     def __str__(self):
         return f'{self.user} {self.user_room}'
 
+class attendence_date(models.Model):
+    warden = models.ForeignKey(User, limit_choices_to={'groups__name': "warden"}, null=True,
+                                  on_delete=models.SET_NULL)
+    datetaken = models.DateTimeField()
 
+    def __str__(self):
+        return str(self.datetaken)
+
+class students_attendence(models.Model):
+    student_name = models.ForeignKey(User, limit_choices_to={'groups__name': "student"}, null=True,
+                                  on_delete=models.SET_NULL)
+    room_num = models.ForeignKey(room,on_delete=models.SET_NULL,null=True)
+    date = models.ForeignKey(attendence_date,on_delete=models.SET_NULL,null=True)
+    present = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.student_name} {self.present} {self.date}'
 
 class issue_raiser(models.Model):
     issue=models.TextField()
@@ -99,4 +118,3 @@ class issue_student(models.Model):
 
 
 
-   

@@ -15,3 +15,8 @@ class roomFilter(django_filters.FilterSet):
         fields='__all__'
         exclude=['Floor_Number','Block_Name','Warden_id']
 
+class students_attendencefilter(django_filters.FilterSet):
+    class Meta:
+        model = students_attendence
+        fields = '__all__'
+

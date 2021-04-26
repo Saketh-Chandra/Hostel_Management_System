@@ -1,0 +1,70 @@
+{% extends 'Wardenapp/main.html' %}
+{% block content %}
+    <style>
+table, td, th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+th, td {
+  padding: 15px;
+}
+</style>
+    <div class="row">
+    <div class="col-md">
+        <table style="width:70%">
+            <tr>
+                <td>
+                    <b>The Date of taking Attendance is on</b>
+                </td>
+                <td>
+                    <h2 style="color:orange">{{ attendance_list.last.date }}</h2>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md">
+            <table style="width:85%">
+                <tr>
+                    <th>Student Name</th>
+                    <th>Room no</th>
+                    <th>Status</th>
+                    <th>Button</th>
+                </tr>
+                <form method="POST">
+                    {% csrf_token %}
+                    {% for i in attendance_list %}
+                        <tr>
+                            <td>{{ i.student_name }}</td>
+                            <td>{{ i.room_num }}</td>
+                            {% if i.present %}
+                            <td><p style="color :darkgreen; ">Present</p></td>
+                        {% else %}
+                                <td><p style="color :red; ">Abscent</p></td>
+                        {% endif %}
+                            {% if i.present %}
+                            <td><a class="btn btn-sm btn-warning" href="{% url 'update_attendance' i.id %}">Mark Abscent</a></td>
+                        {% else %}
+                                <td><a class="btn btn-sm btn-info" href="{% url 'update_attendance' i.id %}">Mark Present</a></td>
+                        {% endif %}
+
+                        </tr>
+                    {% endfor %}
+                </form>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

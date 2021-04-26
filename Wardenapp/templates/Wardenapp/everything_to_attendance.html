@@ -1,0 +1,45 @@
+{% extends "Wardenapp/main.html" %}
+{% block content %}
+    <h1>You can manage your attendance from here.</h1>
+    <br>
+    <div class="row" style="{background-color: powderblue;}">
+        <div class="col-lg-3 col-md-4 mb-3" style="width: 18rem;">
+            <div class="card">
+                <img src="https://assets4-my.umbc.edu/system/shared/thumbnails/events/000/046/237/5942aee7804e91cfa9849ddb5ec2a03b/xlarge.jpg?1484226724"
+                     class="card-img-top"
+                     alt="...">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size:18px">Take Attendance </h5>
+                    <a href="{% url 'attendance_list' %}" class="btn btn-primary">Click Here</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 mb-3" style="width: 18rem;">
+            <div class="card">
+                <img src="https://th.bing.com/th/id/OIP.Yz7oy1b9oDTKfXJ1GxSELAHaFa?pid=ImgDet&rs=1"
+                     class="card-img-top"
+                     alt="...">
+
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size:18px">Choose date to Create list </h5>
+                    <a href="{% url 'attendance_date' %}" class="btn btn-primary">Click Here</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 mb-3" style="width: 18rem;">
+            <div class="card">
+                <img src="https://www3.swipeclock.com/wp-content/uploads/2019/07/swipeclock-destructive-absenteeism.jpg"
+                     class="card-img-top"
+                     alt="...">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size:18px">View Attendance </h5>
+                    <a href="{% url 'view_attendance' %}" class="btn btn-primary">Click Here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#        <a class="btn btn-sm btn-info" href="{% url 'attendance_list' %}">take attendance</a>#}
+    {#        <a class="btn btn-sm btn-info" href="{% url 'attendance_date' %}">choose date</a>#}
+    {#        <a class="btn btn-primary" href="{% url 'view_attendance' %}">View attendance</a>#}
+
+{% endblock %}

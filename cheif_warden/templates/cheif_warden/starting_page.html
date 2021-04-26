@@ -2,12 +2,17 @@
 
 
 {% block content %}
+
     <div class="row">
         {% for i in block_list %}
             <div class="col-sm">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">{{ i|title }}</h5>
+                        <img src="https://i.ibb.co/qJfRrXB/Screenshot-2020-11-26-13-01-14-22.jpg" class="card-img-top"
+                             alt="...">
+                        <br>
+                        <hr>
                         <a href="{% url 'chief_floors_page' i.id %}" class="btn btn-outline-primary">Click Here</a>
                     </div>
                 </div>
