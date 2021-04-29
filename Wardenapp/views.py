@@ -67,7 +67,7 @@ def gate_view(request):
     temp = warden.objects.get(Warden_ID_id=request.user.id)
     gate_pass_stud = gatepass.objects.filter(Warden_id_id=temp.id)
     context = {'gatepass_stud': gate_pass_stud}
-    return render(request, 'Wardenapp/gate.html', context)
+    return render(request, 'Wardenapp/gate.html',context)
 
 
 @allowed_users(allowed_roles=['warden'])
@@ -152,9 +152,11 @@ def date_of_attendence(request):
             # print("date from form",date)
             #print("$$$$$$$$$$$$$$$$$$$", diff.days, diff.days + 1)
             last_row_check = students_attendence.objects.filter(room_num__Warden_id__Warden_ID=request.user).last()
+            print(last_row_check)
             filter_check = students_attendence.objects.filter(student_name=last_row_check.student_name,
                                                               date__datetaken__day=date.day,
                                                               room_num__Warden_id__Warden_ID=request.user)
+            
             if len(filter_check) > 1:
                 message = "Attendance is taken already "
                 messages.error(request, message)

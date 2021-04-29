@@ -24,7 +24,6 @@ class GatepassForm(forms.ModelForm):
             'outing_date': DateInput(),
             'return_date': DateInput()
         }
-<<<<<<< HEAD
 
 # class IssueStudentForm(forms.ModelForm):
 #     class Meta:
@@ -35,5 +34,3 @@ class IssueRaiserForm(forms.ModelForm):
     class Meta:
         model=issue_raiser
         fields=['issue']
-=======
->>>>>>> 456857cbf5770a301324e6661d2de879f1ffc39c
