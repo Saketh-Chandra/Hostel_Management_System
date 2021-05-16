@@ -1,6 +1,6 @@
-# Hostel Management System V2.0
+# Hostel Management System V2.1
 ## :heavy_exclamation_mark: This is still in the development phase!
-* Coming Soon!!.... v2.0
+* Coming Soon!!.... v2.1
 * This is a Hostel Management System system using Django and Python!
 
 ![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/Saketh-Chandra/Hostel_Management_System?include_prereleases)
@@ -63,7 +63,7 @@ All contributions are welcome! Code, documentation, graphics or even design sugg
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on contributing.
 
-## Know issues
+## Know issues‼
 ```bash
 System check identified some issues:
 
@@ -82,10 +82,12 @@ System check identified 5 issues (0 silenced).
 ```
 
 
-# 💡 Future implemention ideas! 
+# 🆕 What's New! 
  * Online attendance system 
  * Gate pass system 
- * Raise an issue in hostel
+ * Raise an issue in the hostel
+
+# 💡 Future implemention ideas! 
  * Email verification
  * ReCaption V3 Implementation
  
