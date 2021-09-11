@@ -22,7 +22,7 @@ for automation is a necessity.
 The purpose of this project is to implement an online hostel room allotment system for
 students replacing the manual method of room allotment. 
 
-## :heavy_exclamation_mark: This is still in the development phase!
+<h2><s>:heavy_exclamation_mark: This is still in the development phase!</s></h2>
 
 # :book: How to use the repository?
 ## :gear: Setup
